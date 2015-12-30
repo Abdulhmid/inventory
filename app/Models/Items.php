@@ -11,11 +11,11 @@ class Items extends Model {
     protected $guarded = ['id'];
 
 	public function detail() {
-		return $this->belongsTo(ItemDetail::class, 'item_id', 'id');
+		return $this->belongsTo(ItemDetail::class, 'id', 'item_id');
 	}
 
 	public function price() {
-		return $this->belongsTo(ItemPrice::class, 'item_id', 'id');
+		return $this->belongsTo(ItemPrice::class, 'id', 'item_id');
 	}
 
 	public function supplier() {
@@ -28,7 +28,11 @@ class Items extends Model {
     public static $rules = array(
         'supplier_id' => 'required',
         'category_id' => 'required',
-        'name_item'   => 'required'
+        'name_item'   => 'required',
+        'price_buy'	  => 'required',
+        'price_selling'	  => 'required',
+        'stok'	  		=> 'required',
+        'note'			=> 'required'
     );
 
 }

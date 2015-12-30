@@ -67,7 +67,7 @@
 
 		return oTable = $('#datatable').DataTable({
 			"dom": '<"tableHeader"<"row"<"col-md-6"f><"col-md-6"p>>><"newProcessing"r>t<"tableFooter"<"row"<"col-md-4"l><"col-md-4"i><"col-md-4"p>>>',
-			"order": [[ 1, "asc" ]],
+			// "order": [[ 1, "asc" ]],
 			"bPaginate": true,
 			"bLengthChange": true,
 			"bFilter": true,

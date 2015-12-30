@@ -47,12 +47,13 @@
 					    <div class="tab-content">
 					      <div class="tab-pane active" id="tab_1">
 								<div class="form-group">
-								    <label for="supplier_id" class="control-label">Supplier</label>
+								    <label for="supplier_id" class="control-label">Supplier </label>
 								    <select class="frm-e form-control" id="supplier_id" name="supplier_id">
 								    	<option value="" selected="selected">- Pilih Supplier -</option>
 								    	@foreach($supplier->toArray() as $key => $valueSupplier)
-								    		<option value="{!! $valueSupplier['supplier_id'] !!}">
-								    			{!! $valueSupplier['name_company'] !!}</option>
+								    		<option value="{!! $valueSupplier['supplier_id'] !!}"
+								    			{{ old("supplier_id") == $valueSupplier['supplier_id'] ? "selected" : "" }}>
+								    			{!! $valueSupplier['name_company'] !!} </option>
 								    	@endforeach
 								    </select>    
 								</div>
@@ -61,34 +62,35 @@
 								    <select class="frm-e form-control" id="category_id" name="category_id">
 								    	<option value="" selected="selected">- Pilih Kategori-</option>
 								    	@foreach($category->toArray() as $key => $valueCategory)
-								    		<option value="{!! $valueCategory['item_category_id'] !!}">
+								    		<option value="{!! $valueCategory['item_category_id'] !!}"
+								    			{{ old("category_id") == $valueCategory['item_category_id'] ? "selected" : "" }}>
 								    			{!! $valueCategory['name_category'] !!}</option>
 								    	@endforeach
 								    </select>    
 								</div>
 								<div class="form-group">
 									<label for="name_item" class="control-label">Nama Barang</label>
-									<input class="form-control" name="name_item" type="text" id="name_item">
+									<input class="form-control" name="name_item" type="text" id="name_item" value="{!! old('name_item') !!}">
 								</div>
 					      </div><!-- /.tab-pane -->
 					      <div class="tab-pane" id="tab_2">
 								<div class="form-group">
 									<label for="price_buy" class="control-label">Harga Beli</label>
-									<input class="form-control" name="price_buy" type="number" min="0" value="0" id="price_buy">
+									<input class="form-control" name="price_buy" type="number" min="0" value="0" id="price_buy" value="{!! old('price_buy') !!}">
 								</div>
 								<div class="form-group">
 									<label for="price_selling" class="control-label">Harga Jual</label>
-									<input class="form-control" name="price_selling" type="number" min="0" value="0" id="price_selling">
+									<input class="form-control" name="price_selling" type="number" min="0" value="0" id="price_selling" value="{!! old('price_selling') !!}">
 								</div>
 					      </div><!-- /.tab-pane -->
 					      <div class="tab-pane" id="tab_3">
 								<div class="form-group">
 									<label for="stok" class="control-label">Stok</label>
-									<input class="form-control" name="stok" type="number" min="0" id="stok">
+									<input class="form-control" name="stok" type="number" min="0" value="0" id="stok" value="{!! old('stok') !!}">
 								</div>
 								<div class="form-group">
 									<label for="note" class="control-label">Keterangan</label>
-									<textarea class="wysihtml52 form-control" name="note" cols="50" rows="10" id="note">
+									<textarea class="wysihtml52 form-control" name="note" cols="50" rows="10" id="note" value="{!! old('note') !!}">
 									</textarea>
 								</div>
 					      </div><!-- /.tab-pane -->
