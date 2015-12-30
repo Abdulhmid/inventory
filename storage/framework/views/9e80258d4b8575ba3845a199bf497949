@@ -25,10 +25,14 @@
 			<?php echo Form::open(array('url'=>GLobalHelp::indexUrl().'/store', 'class'=>'form-horizontal')); ?>
 
 			<div class="box-body">
+				<!-- Validation Start -->
 				<?php if(Session::has('message')): ?>
 				<?php echo GlobalHelp::messages(Session::get('message')); ?>
 
 				<?php endif; ?>
+
+                <?php echo $__env->make('partial.validation', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <!-- Validation Stop -->
 
 				<div class="row">
 					<div class="col-md-12">
@@ -46,14 +50,20 @@
 								    <label for="supplier_id" class="control-label">Supplier</label>
 								    <select class="frm-e form-control" id="supplier_id" name="supplier_id">
 								    	<option value="" selected="selected">- Pilih Supplier -</option>
-								    	<option value="1">Admin</option>
+								    	<?php foreach($supplier->toArray() as $key => $valueSupplier): ?>
+								    		<option value="<?php echo $valueSupplier['supplier_id']; ?>">
+								    			<?php echo $valueSupplier['name_company']; ?></option>
+								    	<?php endforeach; ?>
 								    </select>    
 								</div>
 								<div class="form-group">
 								    <label for="category_id" class="control-label">Kategori</label>
 								    <select class="frm-e form-control" id="category_id" name="category_id">
 								    	<option value="" selected="selected">- Pilih Kategori-</option>
-								    	<option value="1">Admin</option>
+								    	<?php foreach($category->toArray() as $key => $valueCategory): ?>
+								    		<option value="<?php echo $valueCategory['item_category_id']; ?>">
+								    			<?php echo $valueCategory['name_category']; ?></option>
+								    	<?php endforeach; ?>
 								    </select>    
 								</div>
 								<div class="form-group">
@@ -64,17 +74,17 @@
 					      <div class="tab-pane" id="tab_2">
 								<div class="form-group">
 									<label for="price_buy" class="control-label">Harga Beli</label>
-									<input class="form-control" name="price_buy" type="text" id="price_buy">
+									<input class="form-control" name="price_buy" type="number" min="0" value="0" id="price_buy">
 								</div>
 								<div class="form-group">
 									<label for="price_selling" class="control-label">Harga Jual</label>
-									<input class="form-control" name="price_selling" type="text" id="price_selling">
+									<input class="form-control" name="price_selling" type="number" min="0" value="0" id="price_selling">
 								</div>
 					      </div><!-- /.tab-pane -->
 					      <div class="tab-pane" id="tab_3">
 								<div class="form-group">
 									<label for="stok" class="control-label">Stok</label>
-									<input class="form-control" name="stok" type="text" id="stok">
+									<input class="form-control" name="stok" type="number" min="0" id="stok">
 								</div>
 								<div class="form-group">
 									<label for="note" class="control-label">Keterangan</label>

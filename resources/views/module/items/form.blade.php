@@ -26,9 +26,13 @@
 			</div>
 			{!! Form::open(array('url'=>GLobalHelp::indexUrl().'/store', 'class'=>'form-horizontal')) !!}
 			<div class="box-body">
+				<!-- Validation Start -->
 				@if(Session::has('message'))
 				{!! GlobalHelp::messages(Session::get('message')) !!}
 				@endif
+
+                @include('partial.validation')
+                <!-- Validation Stop -->
 
 				<div class="row">
 					<div class="col-md-12">
@@ -46,14 +50,20 @@
 								    <label for="supplier_id" class="control-label">Supplier</label>
 								    <select class="frm-e form-control" id="supplier_id" name="supplier_id">
 								    	<option value="" selected="selected">- Pilih Supplier -</option>
-								    	<option value="1">Admin</option>
+								    	@foreach($supplier->toArray() as $key => $valueSupplier)
+								    		<option value="{!! $valueSupplier['supplier_id'] !!}">
+								    			{!! $valueSupplier['name_company'] !!}</option>
+								    	@endforeach
 								    </select>    
 								</div>
 								<div class="form-group">
 								    <label for="category_id" class="control-label">Kategori</label>
 								    <select class="frm-e form-control" id="category_id" name="category_id">
 								    	<option value="" selected="selected">- Pilih Kategori-</option>
-								    	<option value="1">Admin</option>
+								    	@foreach($category->toArray() as $key => $valueCategory)
+								    		<option value="{!! $valueCategory['item_category_id'] !!}">
+								    			{!! $valueCategory['name_category'] !!}</option>
+								    	@endforeach
 								    </select>    
 								</div>
 								<div class="form-group">
@@ -64,17 +74,17 @@
 					      <div class="tab-pane" id="tab_2">
 								<div class="form-group">
 									<label for="price_buy" class="control-label">Harga Beli</label>
-									<input class="form-control" name="price_buy" type="text" id="price_buy">
+									<input class="form-control" name="price_buy" type="number" min="0" value="0" id="price_buy">
 								</div>
 								<div class="form-group">
 									<label for="price_selling" class="control-label">Harga Jual</label>
-									<input class="form-control" name="price_selling" type="text" id="price_selling">
+									<input class="form-control" name="price_selling" type="number" min="0" value="0" id="price_selling">
 								</div>
 					      </div><!-- /.tab-pane -->
 					      <div class="tab-pane" id="tab_3">
 								<div class="form-group">
 									<label for="stok" class="control-label">Stok</label>
-									<input class="form-control" name="stok" type="text" id="stok">
+									<input class="form-control" name="stok" type="number" min="0" id="stok">
 								</div>
 								<div class="form-group">
 									<label for="note" class="control-label">Keterangan</label>

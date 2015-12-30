@@ -36,16 +36,21 @@ class Items extends Controller
 
     public function getCreate()
     {
-      $data['title']        = $this->title;
-      $data['breadcrumb']   = 'new-'.$this->url;
-      $data['category']     = $this->tableCategory->scopeTakeData();
-      $data['supplier']     = $this->suppliers->scopeTakeData();
+          $data['title']        = $this->title;
+          $data['breadcrumb']   = 'new-'.$this->url;
+          $data['category']     = $this->tableCategory->scopeTakeData();
+          $data['supplier']     = $this->suppliers->scopeTakeData();
 
-      return view($this->folder.'.form', $data);
+          return view($this->folder.'.form', $data);
     }
 
-    public function postStore(){
+    public function postStore(Request $request, $id = ""){
+        $rules = Md\Items::$rules;
+        $validator = \Validator::make($request->all(), $rules);
 
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
     }
 
     public function getData(Request $request){

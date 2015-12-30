@@ -22,5 +22,14 @@ class Items extends Model {
 		return $this->belongsTo(Suppliers::class, 'supplier_id', 'supplier_id');
 	}
 
+    /**
+     * Validation Users CRUD
+     */
+    public static $rules = array(
+        'supplier_id' => 'required',
+        'category_id' => 'required',
+        'name_item'   => 'required'
+    );
+
 }
 ?>
