@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
             'id' => Uuid::generate(),
             'group_id' => '1',
             'username' => 'admin',
-            'email' => 'admin@tlab.co.id',
+            'email' => 'admin@spam4.me',
             'password' => bcrypt('123456'),
             'name' => 'Admin Tlab',
             'active' => '1',
