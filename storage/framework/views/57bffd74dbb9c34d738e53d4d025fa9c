@@ -1,9 +1,8 @@
-@extends('app')
-@section('style')
-<link href="{!! asset('plugins/iCheck/all.css') !!}" rel="stylesheet" type="text/css" />
-@endsection
+<?php $__env->startSection('style'); ?>
+<link href="<?php echo asset('plugins/iCheck/all.css'); ?>" rel="stylesheet" type="text/css" />
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <div class="container" >
     <div class="row">
@@ -23,21 +22,21 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            @if (count($errors) > 0)
+                            <?php if(count($errors) > 0): ?>
                                 <div class="alert alert-danger">
                                     <strong>Whoops!</strong> There were some problems with your input.<br><br>
                                     <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
+                                        <?php foreach($errors->all() as $error): ?>
+                                            <li><?php echo e($error); ?></li>
+                                        <?php endforeach; ?>
                                     </ul>
                                 </div>
-                            @endif
+                            <?php endif; ?>
 
-                            <form id="login-form" action="{{ url('/auth/login') }}" method="post" role="form" style="display: block;">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <form id="login-form" action="<?php echo e(url('/auth/login')); ?>" method="post" role="form" style="display: block;">
+                                <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
                                 <div class="form-group has-feedback">
-                                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" autofocus value="{{ old('username') }}">
+                                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" autofocus value="<?php echo e(old('username')); ?>">
                                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                                 </div>
                                 <div class="form-group has-feedback">
@@ -71,10 +70,10 @@
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('script')
-<script src="{!! asset('plugins/iCheck/icheck.min.js') !!}" type="text/javascript"></script>
+<?php $__env->startSection('script'); ?>
+<script src="<?php echo asset('plugins/iCheck/icheck.min.js'); ?>" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('.icheck').iCheck({
@@ -82,4 +81,6 @@
         });
     });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
