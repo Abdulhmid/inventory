@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/var/www/html/jukir-tlab/database/migrations/2015_10_08_040522_create_parking_activity_jukir_table.php</file>
+            <file>file:/var/www/html/jukir-tlab/database/migrations/2015_10_08_040518_create_site_jukir_table.php</file>
+            <file>file:/var/www/html/jukir-tlab/database/migrations/2015_11_06_083007_create_parking_activity_transaction_jukir_table.php</file>
+        </group>
+    </open-files>
+</project-private>

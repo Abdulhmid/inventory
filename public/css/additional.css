@@ -1,0 +1,230 @@
+.mv{
+  margin-left: 17px;
+}
+.mv1{
+  margin-left: 1px;
+}
+.rs{
+	width: 325px;
+}
+.required:after {
+    color: red;
+    content: '*';
+
+}
+
+/*=== Style Guide ===*/
+
+body.skin-own {
+background: #191919;
+}
+
+/*=== NAV ===*/
+
+body.skin-own .main-header {
+	background: #90c453;
+ }
+
+body.skin-own .main-header, body.skin-own .navbar, body.skin-own .sidebar-toggle {
+	color: #fff;
+}
+
+body.skin-own .sidebar-toggle:hover {
+	background: #7ba747;	
+}
+
+body.skin-own .logo{
+	background: #7ba747;
+	color: #fff;
+}
+
+body.skin-own .logo:hover {
+	background: #759f44;
+}
+
+body.skin-own .nav>li>a {
+	color: #fff;
+}
+body.skin-own .nav>li>a:hover, body.skin-own .nav>li>a:focus {
+  color: grey;
+}
+
+ /*=== SIDEBAR ===*/
+body.skin-own .sidebar-menu>li>a {
+	border-left: 3px solid transparent;
+ 	margin-right: 1px;
+}
+
+body.skin-own .sidebar-menu>li>a:hover, body.skin-own .sidebar-menu>li.active>a {
+	color: #fff;
+	background: #1e282c;
+	border-left-color: #90c453;
+}
+
+body.skin-own .sidebar a {
+	color: #b8c7ce;
+}
+
+/*==========*/
+
+.treeview-menu a:hover ,.treeview-menu a.dropdown-active  {
+	background: #1E282C;
+    color: #90C453 !important;
+    transition:all 0.3s;
+    -moz-transition:all 0.3s;
+    -webkit-transition:all 0.3s;
+}
+
+.full-alert {
+	margin-bottom: 10px;
+	padding-right: 0px;
+	padding: 0px;
+}
+
+table.listTable tr td:last-child,table.listTable th:last-child {
+	width: 100px;
+	text-align: center;
+}
+
+.box-undo-delete {
+	position: fixed;
+  	bottom: 0px;
+  	background: #ffffff;
+  	padding: 15px;
+  	width: 100%;
+  	margin-left: -15px !important;
+	font-weight: bold;
+  	border-top: 1px solid #ddd;
+  	box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.05);
+}
+
+.box-filter {
+	overflow: hidden;
+  	padding: 15px 10px 0px 10px;
+  	background: rgba(245, 245, 245, 0.65);
+  	margin-top: 10px;
+  	border-top: 1px solid rgba(221, 221, 221, 0.43);
+  	border-bottom: 1px solid rgba(221, 221, 221, 0.43);
+}
+
+.box-filter label {
+	margin-top: 5px;
+}
+
+
+
+.box-undo-delete a { padding-left: 10px;}
+
+.tableHeader .dataTables_filter label {
+	float: left !important;
+}
+
+.tableHeader .dataTables_filter label input {
+ 	margin-left: 10px;
+  	width: 253px;
+ }
+
+.newProcessing .dataTables_processing {
+	width: 100%;
+	background: #f9edbe;
+	padding: 10px;
+	border: 1px solid rgba(255, 165, 0, 0.27);
+	text-align: center;
+	font-weight: bold;
+	border-radius: none;
+	box-shadow: none;
+}
+
+.tableHeader , .tableFooter {
+	overflow: hidden;
+}
+
+.tableFooter .dataTables_info {
+	margin-left: 0% !important; 
+	text-align: center;
+
+}
+div.dataTables_paginate {
+	float: right;
+	margin: 0;
+	margin-top: -30px;
+}
+div.dataTables_info {
+	padding-top: 8px;
+	margin-left: 40% !important;
+}
+#filter_group{
+	width: 70%;
+}
+
+.fa-input {
+  font-family: FontAwesome, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+
+/* Cashier  */
+
+.scroll {
+	height:250px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+.scrolltime {
+	height:210px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+  #answerform{
+        position: absolute;
+        border: 5px solid gray;
+        padding: 5px;
+        background: white;
+        width: 300px;
+        height: 200px;
+        overflow-y: scroll;
+    }
+
+.img-wrapper {
+	display: inline-block;
+	overflow: hidden;
+	width: 909px;
+}
+
+.img-wrapper img {
+	-webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+    vertical-align: middle;
+}
+
+.img-wrapper img:hover {
+	transform:scale(1.5);
+    -ms-transform:scale(1.5); /* IE 9 */
+    -moz-transform:scale(1.5); /* Firefox */
+    -webkit-transform:scale(1.5); /* Safari and Chrome */
+    -o-transform:scale(1.5); /* Opera */
+}
+
+.box-chap-img2 {
+	width: 575px;
+	height: 285px;
+	margin: 0px 10px;
+	float: middle;
+	background: #ffffff;
+	-moz-box-shadow: 0px 0px 2px rgba(0,0,0,0.27);
+	-webkit-box-shadow: 0px 0px 2px rgba(0,0,0,0.27);
+	box-shadow: 0px 0px 2px rgba(0,0,0,0.27);
+	position: relative;
+}
+.sbimg{
+	margin-left: 103px;
+}
+
+
+/* Add Class For Treeview Menu Active */
+.active-treeview{
+	background-color: rgb(69, 78, 78);
+}

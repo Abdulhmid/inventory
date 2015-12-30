@@ -1,0 +1,30 @@
+{
+  "name": "unisharp/laravel-filemanager",
+  "description": "A file upload/editor intended for use with Laravel 5 and CKEditor",
+  "license": "MIT",
+  "keywords": [
+    "filemanager",
+    "laravel",
+    "ckeditor",
+    "parent",
+    "upload",
+    "file",
+    "manager"
+  ],
+  "authors": [
+    {
+      "name": "Trevor Sawler",
+      "email": "trevor.sawler@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.0",
+    "illuminate/support": ">=4.2.0",
+    "intervention/image": "2.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Unisharp\\Laravelfilemanager\\": "src/"
+    }
+  }
+}
