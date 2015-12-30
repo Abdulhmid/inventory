@@ -22,7 +22,6 @@ class CreateTableItems extends Migration
 
               /** Main data  */
               $table->string('name_items', 255);
-              $table->integer('stok');
 
               /* Action */
               $table->nullableTimestamps();

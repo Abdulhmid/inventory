@@ -21,7 +21,8 @@ class CreateTableItemsPrice extends Migration
               $table->increments('item_price_id');
 
               /** Main data  */
-              $table->decimal('price',19,2);
+              $table->decimal('price_buy',19,2);
+              $table->decimal('price_selling',19,2);
 
               /* Action */
               $table->nullableTimestamps();

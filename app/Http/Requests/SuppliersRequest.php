@@ -36,10 +36,10 @@ class SuppliersRequest extends Request
 
       if(!empty($last)) :
           $rules['email'] = 'required|email|unique:suppliers,email,'.$last.',id';
-          $rules['website'] = 'required|email|unique:suppliers,website,'.$last.',id';
+          $rules['website'] = 'required|unique:suppliers,website,'.$last.',id';
       else :
           $rules['email'] = 'required|email|unique:suppliers,email';
-          $rules['website'] = 'required|email|unique:suppliers,website';
+          $rules['website'] = 'required|unique:suppliers,website';
       endif;
 
       return $rules;

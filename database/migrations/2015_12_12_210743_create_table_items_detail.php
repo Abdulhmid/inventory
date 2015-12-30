@@ -21,6 +21,7 @@ class CreateTableItemsDetail extends Migration
               $table->increments('item_detail_id');
 
               /** Main data  */
+              $table->integer('stok');
               $table->text('note');
 
               /* Action */
