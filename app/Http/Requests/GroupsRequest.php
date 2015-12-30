@@ -30,10 +30,10 @@ class GroupsRequest extends Request
 
         if(is_numeric($last)) : 
             $rules['group_name'] = 'required|unique:groups,group_name,'.$last.',group_id';
-            $rules['order'] = 'required';
+            // $rules['order'] = 'required';
         else :
             $rules['group_name'] = 'required';
-            $rules['order'] = 'required';
+            // $rules['order'] = 'required';
         endif;
 
         return $rules;

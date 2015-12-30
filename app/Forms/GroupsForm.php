@@ -14,7 +14,8 @@ class GroupsForm extends Form
             )
             ->add('order', 'number',
                 [
-                    'attr' => ['class' => 'form-control','min' => 0]
+                    'attr' => ['class' => 'form-control','min' => 0,'style' => 'display : none', 'hidden'],
+                    'label' => false
                 ]
             )
             ->add('description', 'textarea',
