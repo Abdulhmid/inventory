@@ -20,6 +20,12 @@
                     <span>Pembelian</span>
                 </a>
             </li>
+            <li class="{!! $segment == 'items' ? 'active' : '' !!}">
+                <a href="{!! url('/items') !!}">
+                    <i class="fa fa-file-text"></i>
+                    <span>Return</span>
+                </a>
+            </li>
 
             <li class="{!! $segment == 'items' ? 'active' : '' !!}">
                 <a href="{!! url('/items') !!}">

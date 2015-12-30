@@ -57,7 +57,7 @@ class Suppliers extends Controller
           $input['photo'] = isset($photo) ? $photo : "" ;
           $input['name_company']      = $input['name_company'];
           $query = $this->model->create($input);
-          $result = $query->id;
+          $result = $query->supplier_id;
       else :
           if(\Input::hasFile('photo'))
               $input['photo'] = isset($photo) ? $photo : "";

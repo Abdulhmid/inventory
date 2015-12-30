@@ -16,8 +16,7 @@ class SuppliersDatatable {
 	{
 		$this->data = $this
 			->model
-			->select('supplier_id','name_company','address','telp',
-							 'email','website','created_at');
+			->scopeTakeData();
 
 	}
 

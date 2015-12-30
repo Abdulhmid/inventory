@@ -35,8 +35,8 @@ class SuppliersRequest extends Request
       $last    = \GLobalHelp::idUrlEdit();
 
       if(!empty($last)) :
-          $rules['email'] = 'required|email|unique:suppliers,email,'.$last.',id';
-          $rules['website'] = 'required|unique:suppliers,website,'.$last.',id';
+          $rules['email'] = 'required|email|unique:suppliers,email,'.$last.',supplier_id';
+          $rules['website'] = 'required|unique:suppliers,website,'.$last.',supplier_id';
       else :
           $rules['email'] = 'required|email|unique:suppliers,email';
           $rules['website'] = 'required|unique:suppliers,website';

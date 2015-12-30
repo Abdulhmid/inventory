@@ -10,5 +10,9 @@ class ItemsCategory extends Model {
     protected $primaryKey = 'item_category_id';
     protected $guarded = ['item_category_id'];
 
+	public function scopeTakeData(){
+		return self::orderBy('item_category_id','desc')->get();
+	}
+
 }
 ?>

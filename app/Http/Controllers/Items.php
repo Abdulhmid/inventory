@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models as Md;
+use App\Additionals\Datatables\ItemsDatatable;
 
 class Items extends Controller
 {
@@ -17,9 +18,13 @@ class Items extends Controller
     protected $folder = "module.items";
     protected $form;
 
-    public function __construct(Md\Items $table)
+    public function __construct(Md\Items $table,
+                                Md\Suppliers $suppliers,
+                                Md\ItemsCategory $tableCategory)
     {
-        $this->model    = $table;
+        $this->model         = $table;
+        $this->suppliers     = $suppliers;
+        $this->tableCategory = $tableCategory;
     }
 
     public function getIndex()
@@ -31,8 +36,20 @@ class Items extends Controller
 
     public function getCreate()
     {
-      return view($this->folder.'.form', ['title' => $this->title,
-                                          'breadcrumb' => 'new-'.$this->url]);
+      $data['title']        = $this->title;
+      $data['breadcrumb']   = 'new-'.$this->url;
+      $data['category']     = $this->tableCategory->scopeTakeData();
+      $data['supplier']     = $this->suppliers->scopeTakeData();
+
+      return view($this->folder.'.form', $data);
+    }
+
+    public function postStore(){
+
+    }
+
+    public function getData(Request $request){
+        return (new ItemsDatatable($this->model))->make();
     }
 
 }

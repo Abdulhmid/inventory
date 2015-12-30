@@ -18,5 +18,9 @@ class Users extends Model {
         return $this->hasOne('App\Model\Groups', 'group_id', 'group_id');
     }
 
+	public function scopeTakeData(){
+		return self::orderBy('id','desc')->get();
+	}
+
 }
 ?>

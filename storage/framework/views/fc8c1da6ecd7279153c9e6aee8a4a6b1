@@ -20,6 +20,12 @@
                     <span>Pembelian</span>
                 </a>
             </li>
+            <li class="<?php echo $segment == 'items' ? 'active' : ''; ?>">
+                <a href="<?php echo url('/items'); ?>">
+                    <i class="fa fa-file-text"></i>
+                    <span>Return</span>
+                </a>
+            </li>
 
             <li class="<?php echo $segment == 'items' ? 'active' : ''; ?>">
                 <a href="<?php echo url('/items'); ?>">

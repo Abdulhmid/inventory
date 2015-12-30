@@ -16,7 +16,7 @@ class GroupsDatatable {
 	{
 		$this->data = $this
 			->model
-			->select('group_id','group_name','order','created_at');
+			->scopeTakeData();
 
 	}
 

@@ -1,10 +1,8 @@
-@extends('main')
+<?php $__env->startSection('style'); ?>
+	<link href="<?php echo asset('plugins/sweet-alert/sweet-alert.css'); ?> "rel="stylesheet" type="text/css"/>
+<?php $__env->stopSection(); ?>
 
-@section('style')
-	<link href="{!! asset('plugins/sweet-alert/sweet-alert.css') !!} "rel="stylesheet" type="text/css"/>
-@stop
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <section class="content">
 <div class="row">
 	<div class="col-md-12">
@@ -13,22 +11,24 @@
 			<div class="box-header">
 				<div class="row">
 					<div class="col-xs-6">
-						<h3 class="box-title">{!! str_contains(Request::segment(2), 'create') ? 'Tambah' : 'Ubah' !!} {!! $title !!}</h3>
+						<h3 class="box-title"><?php echo str_contains(Request::segment(2), 'create') ? 'Tambah' : 'Ubah'; ?> <?php echo $title; ?></h3>
 					</div>
 					<div class="col-xs-6">
 						<div class="pull-right">
-							<a href="{!! URL::to(GlobalHelp::indexUrl())!!}" class="btn btn-default"> 
+							<a href="<?php echo URL::to(GlobalHelp::indexUrl()); ?>" class="btn btn-default"> 
 								<i class="fa fa-arrow-left"></i> Kembali 
 							</a>
 						</div>
 					</div>
 				</div>
 			</div>
-			{!! Form::open(array('url'=>GLobalHelp::indexUrl().'/store', 'class'=>'form-horizontal')) !!}
+			<?php echo Form::open(array('url'=>GLobalHelp::indexUrl().'/store', 'class'=>'form-horizontal')); ?>
+
 			<div class="box-body">
-				@if(Session::has('message'))
-				{!! GlobalHelp::messages(Session::get('message')) !!}
-				@endif
+				<?php if(Session::has('message')): ?>
+				<?php echo GlobalHelp::messages(Session::get('message')); ?>
+
+				<?php endif; ?>
 
 				<div class="row">
 					<div class="col-md-12">
@@ -91,18 +91,21 @@
 
 			</div>
 			<div class="clearfix"></div>
-			@include('partial.form_button')
-			{!! Form::close() !!}
+			<?php echo $__env->make('partial.form_button', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+			<?php echo Form::close(); ?>
+
 		</div>
 
 	</div>
 </div>
 </section>
-@stop
+<?php $__env->stopSection(); ?>
 
-@section('script')
-	<script src="{!! asset('plugins/sweet-alert/sweet-alert.js') !!} " type="text/javascript"></script>    
-	<script src="{!! asset('js/alert.js') !!} " type="text/javascript"></script>
+<?php $__env->startSection('script'); ?>
+	<script src="<?php echo asset('plugins/sweet-alert/sweet-alert.js'); ?> " type="text/javascript"></script>    
+	<script src="<?php echo asset('js/alert.js'); ?> " type="text/javascript"></script>
 	<script type="text/javascript">
     </script>
-@stop
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

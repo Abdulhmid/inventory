@@ -16,7 +16,7 @@ class ItemsCategoryDatatable {
 	{
 		$this->data = $this
 			->model
-			->select('item_category_id','name_category','description','created_at');
+			->scopeTakeData();
 
 	}
 

@@ -18,6 +18,10 @@ class Groups extends Model {
         return $this->hasMany('App\Models\Users', 'group_id', 'group_id');
     }
 
+	public function scopeTakeData(){
+		return self::orderBy('group_id','desc')->get();
+	}
+
 }
 ?>
 
