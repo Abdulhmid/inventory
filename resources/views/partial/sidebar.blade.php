@@ -34,7 +34,7 @@
                 </a>
             </li>
 
-            <li class="treeview {!! $segment == 'reports' ? 'active' : '' !!}">
+            <li class="treeview {!! $segment == 'reports' ? 'active' : '' !!}" style="display:none">
                 <?php $segmentReport = Request::segment(2); ?>
                 <a href="#">
                     <i class="fa fa-area-chart"></i>

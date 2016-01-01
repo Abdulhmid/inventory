@@ -8,6 +8,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models as Md;
 use App\Additionals\Datatables\ItemsDatatable;
+use Kris\LaravelFormBuilder\FormBuilder;
+use App\Forms\ItemsForm;
+use App\Http\Requests\ItemsRequest;
 
 class Items extends Controller
 {
@@ -29,6 +32,7 @@ class Items extends Controller
         $this->modelPrice    = $tablePrice;
         $this->suppliers     = $suppliers;
         $this->tableCategory = $tableCategory;
+        $this->form          = ItemsForm::class;
     }
 
     public function getIndex()
@@ -38,41 +42,42 @@ class Items extends Controller
         return view($this->folder.'.index', $data);
     }
 
-    public function getCreate()
+    public function getCreate(FormBuilder $formBuilder)
     {
-      $data['title']        = $this->title;
-      $data['breadcrumb']   = 'new-'.$this->url;
-      $data['category']     = $this->tableCategory->scopeTakeData();
-      $data['supplier']     = $this->suppliers->scopeTakeData();
+        $form = $formBuilder->create($this->form, [
+            'method' => 'POST',
+            'url' => $this->url.'/store'
+        ]);
 
-      return view($this->folder.'.form', $data);
+        return view($this->folder.'.form', ['title' => $this->title,
+                                            'form' => $form,
+                                            'breadcrumb' => 'new-'.$this->url]);
     }
 
-    public function postStore(Request $request, $id = ""){
-        $rules = Md\Items::$rules;
-        $validator = \Validator::make($request->all(), $rules);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withInput($request->all())->withErrors($validator);
-        }
-
+    public function postStore(ItemsRequest $request, $id = ""){
         $input = $request->except('save_continue');
-        $inputItem['name_items']    = $input['name_item'];
+        $inputItem['name_items']    = $input['name_items'];
         $inputItem['category_id']   = $input['category_id'];
         $inputItem['supplier_id']   = $input['supplier_id'];
 
         if($id == "" ) :
-            // Create News Items 
+            /*
+            * Create News Item
+            */
             $query = $this->model->create($inputItem);
             $resultId = $query->id;
 
-            // Create News Detail
+            /*
+            * Create News Item Detail 
+            */
             $inputItemDetail['stok']    = $input['stok'];
             $inputItemDetail['note']    = $input['note'];
             $inputItemDetail['item_id'] = $resultId;
             $this->modelDetail->create($inputItemDetail);
-
-            // Create News Price
+ 
+            /*
+            * Create News Item Price 
+            */
             $inputItemPrice['price_buy']        = $input['price_buy'];
             $inputItemPrice['price_selling']    = $input['price_selling'];
             $inputItemPrice['item_id']          = $resultId;
@@ -81,6 +86,26 @@ class Items extends Controller
         else :
             $this->model->find($id)->update($inputItem);
             $resultId = $id;
+
+            /*
+            * Create News Item Detail 
+            */
+            $this->modelDetail->where('item_id',$resultId)->delete();
+
+            $inputItemDetail['stok']    = $input['stok'];
+            $inputItemDetail['note']    = $input['note'];
+            $inputItemDetail['item_id'] = $resultId;
+            $this->modelDetail->create($inputItemDetail);
+ 
+            /*
+            * Create News Item Price 
+            */
+            $this->modelPrice->where('item_id',$resultId)->delete();
+            
+            $inputItemPrice['price_buy']        = $input['price_buy'];
+            $inputItemPrice['price_selling']    = $input['price_selling'];
+            $inputItemPrice['item_id']          = $resultId;
+            $this->modelPrice->create($inputItemPrice);
         endif;
 
         $save_continue = \Input::get('save_continue');
@@ -89,9 +114,24 @@ class Items extends Controller
         return redirect($redirect)->with('message','Berhasil tambah data group!');
     }
 
-    public function getEdit($id="")
+    public function getEdit(FormBuilder $formBuilder=null, $id="")
     {
+        if ($id=="" || is_null($formBuilder)) return redirect($this->url);
 
+        $edit = $this->model->with(['detail','price','supplier'])->find($id);;
+
+        $form = $formBuilder
+            ->create($this->form)
+            ->setFormOptions([
+                'method' => 'POST',
+                'files' => true,
+                'url' => $this->url.'/store/'.$id
+            ]);
+
+        return view($this->folder.'.form', ['title' => $this->title, 
+                                            'form' => $form, 
+                                            'row' => $edit,
+                                            'breadcrumb' => 'edit-'.$this->url]); 
     }
 
     public  function  getDelete($id ="")

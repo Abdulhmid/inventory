@@ -24,87 +24,47 @@
 					</div>
 				</div>
 			</div>
-			{!! Form::open(array('url'=>GLobalHelp::indexUrl().'/store', 'class'=>'form-horizontal')) !!}
 			<div class="box-body">
-				<!-- Validation Start -->
 				@if(Session::has('message'))
 				{!! GlobalHelp::messages(Session::get('message')) !!}
 				@endif
 
-                @include('partial.validation')
-                <!-- Validation Stop -->
-
+				{{-- Form --}}
+				{!! form_start($form) !!}
 				<div class="row">
 					<div class="col-md-12">
-					  <!-- Custom Tabs -->
-					  <div class="nav-tabs-custom">
-					    <ul class="nav nav-tabs">
-					      <li class="active"><a href="#tab_1" data-toggle="tab">Data</a></li>
-					      <li><a href="#tab_2" data-toggle="tab">Harga</a></li>
-					      <li><a href="#tab_3" data-toggle="tab">Keterangan</a></li>
-					      <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
-					    </ul>
-					    <div class="tab-content">
-					      <div class="tab-pane active" id="tab_1">
-								<div class="form-group">
-								    <label for="supplier_id" class="control-label">Supplier </label>
-								    <select class="frm-e form-control" id="supplier_id" name="supplier_id">
-								    	<option value="" selected="selected">- Pilih Supplier -</option>
-								    	@foreach($supplier->toArray() as $key => $valueSupplier)
-								    		<option value="{!! $valueSupplier['supplier_id'] !!}"
-								    			{{ old("supplier_id") == $valueSupplier['supplier_id'] ? "selected" : "" }}>
-								    			{!! $valueSupplier['name_company'] !!} </option>
-								    	@endforeach
-								    </select>    
-								</div>
-								<div class="form-group">
-								    <label for="category_id" class="control-label">Kategori</label>
-								    <select class="frm-e form-control" id="category_id" name="category_id">
-								    	<option value="" selected="selected">- Pilih Kategori-</option>
-								    	@foreach($category->toArray() as $key => $valueCategory)
-								    		<option value="{!! $valueCategory['item_category_id'] !!}"
-								    			{{ old("category_id") == $valueCategory['item_category_id'] ? "selected" : "" }}>
-								    			{!! $valueCategory['name_category'] !!}</option>
-								    	@endforeach
-								    </select>    
-								</div>
-								<div class="form-group">
-									<label for="name_item" class="control-label">Nama Barang</label>
-									<input class="form-control" name="name_item" type="text" id="name_item" value="{!! old('name_item') !!}">
-								</div>
-					      </div><!-- /.tab-pane -->
-					      <div class="tab-pane" id="tab_2">
-								<div class="form-group">
-									<label for="price_buy" class="control-label">Harga Beli</label>
-									<input class="form-control" name="price_buy" type="number" min="0" value="0" id="price_buy" value="{!! old('price_buy') !!}">
-								</div>
-								<div class="form-group">
-									<label for="price_selling" class="control-label">Harga Jual</label>
-									<input class="form-control" name="price_selling" type="number" min="0" value="0" id="price_selling" value="{!! old('price_selling') !!}">
-								</div>
-					      </div><!-- /.tab-pane -->
-					      <div class="tab-pane" id="tab_3">
-								<div class="form-group">
-									<label for="stok" class="control-label">Stok</label>
-									<input class="form-control" name="stok" type="number" min="0" value="0" id="stok" value="{!! old('stok') !!}">
-								</div>
-								<div class="form-group">
-									<label for="note" class="control-label">Keterangan</label>
-									<textarea class="wysihtml52 form-control" name="note" cols="50" rows="10" id="note" value="{!! old('note') !!}">
-									</textarea>
-								</div>
-					      </div><!-- /.tab-pane -->
-					    </div><!-- /.tab-content -->
-					  </div><!-- nav-tabs-custom -->
-					  <b>Tambah Barang Baru:</b>
-					  <p>Isikan Sesuai Dengan Kebutuhan</p>
-					</div><!-- /.col -->
+						<!-- Custom Tabs -->
+						<div class="nav-tabs-custom">
+							<ul class="nav nav-tabs">
+							  <li class="active"><a href="#tab_1" data-toggle="tab">Data</a></li>
+							  <li><a href="#tab_2" data-toggle="tab">Harga</a></li>
+							  <li><a href="#tab_3" data-toggle="tab">Keterangan</a></li>
+							  <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+							</ul>
+						    <div class="tab-content">
+						      <div class="tab-pane active" id="tab_1">
+						      	{!! form_row($form->supplier_id, ['selected' => isset($row) ? $row->supplier_id : '']) !!}
+						      	{!! form_row($form->category_id, ['selected' => isset($row) ? $row->category_id : '']) !!}
+						      	{!! form_row($form->name_items, ['default_value' => isset($row) ? $row->name_items: '']) !!}
+						      </div>
+						      <div class="tab-pane" id="tab_2">
+						      	{!! form_row($form->price_buy, ['default_value' => isset($row['price']) ? (int)$row['price']->price_buy: '']) !!}
+						      	{!! form_row($form->price_selling, ['default_value' => isset($row['price']) ? (int)$row['price']->price_selling: '']) !!}
+						      </div>
+						      <div class="tab-pane" id="tab_3">
+								{!! form_row($form->stok, ['default_value' => isset($row['detail']) ? $row['detail']->stok : '']) !!}
+								{!! form_row($form->note, ['default_value' => isset($row['detail']) ? $row['detail']->note : '']) !!}
+						      </div>
+						    </div>
+						</div>
+					</div>
 				</div>
-
 			</div>
-			<div class="clearfix"></div>
-			@include('partial.form_button')
-			{!! Form::close() !!}
+					<div class="clearfix"></div>
+					@include('partial.form_button')
+				{!! form_end($form) !!}
+
+				{{-- End Form --}}
 		</div>
 
 	</div>
