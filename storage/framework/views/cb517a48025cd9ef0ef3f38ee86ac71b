@@ -8,20 +8,20 @@
 
             <li class="header">Main Menu</li>
 
-            <li class="<?php echo $segment == 'buy' ? 'active' : ''; ?>">
-                <a href="<?php echo url('/buy'); ?>">
+            <li class="<?php echo $segment == 'selling' ? 'active' : ''; ?>">
+                <a href="<?php echo url('/selling'); ?>">
                     <i class="fa fa-file-text"></i>
                     <span>Penjualan</span>
                 </a>
             </li>
-            <li class="<?php echo $segment == 'sell' ? 'active' : ''; ?>">
-                <a href="<?php echo url('/sell'); ?>">
+            <li class="<?php echo $segment == 'buying' ? 'active' : ''; ?>">
+                <a href="<?php echo url('/buying'); ?>">
                     <i class="fa fa-file-text"></i>
                     <span>Pembelian</span>
                 </a>
             </li>
-            <li class="<?php echo $segment == 'items' ? 'active' : ''; ?>">
-                <a href="<?php echo url('/items'); ?>">
+            <li class="<?php echo $segment == 'return' ? 'active' : ''; ?>">
+                <a href="<?php echo url('/return'); ?>">
                     <i class="fa fa-file-text"></i>
                     <span>Return</span>
                 </a>

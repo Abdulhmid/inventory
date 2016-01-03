@@ -19,5 +19,8 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::controller('/items', 'Items');
 	Route::controller('/groups', 'Groups');
 	Route::controller('/users', 'Users');
+	Route::controller('/buying', 'Buying');
+	Route::controller('/selling', 'Selling');
+	Route::controller('/return', 'ReturnItems');
 	Route::controller('/', 'Dashboard');
 });

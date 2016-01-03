@@ -8,20 +8,20 @@
 
             <li class="header">Main Menu</li>
 
-            <li class="{!! $segment == 'buy' ? 'active' : '' !!}">
-                <a href="{!! url('/buy') !!}">
+            <li class="{!! $segment == 'selling' ? 'active' : '' !!}">
+                <a href="{!! url('/selling') !!}">
                     <i class="fa fa-file-text"></i>
                     <span>Penjualan</span>
                 </a>
             </li>
-            <li class="{!! $segment == 'sell' ? 'active' : '' !!}">
-                <a href="{!! url('/sell') !!}">
+            <li class="{!! $segment == 'buying' ? 'active' : '' !!}">
+                <a href="{!! url('/buying') !!}">
                     <i class="fa fa-file-text"></i>
                     <span>Pembelian</span>
                 </a>
             </li>
-            <li class="{!! $segment == 'items' ? 'active' : '' !!}">
-                <a href="{!! url('/items') !!}">
+            <li class="{!! $segment == 'return' ? 'active' : '' !!}">
+                <a href="{!! url('/return') !!}">
                     <i class="fa fa-file-text"></i>
                     <span>Return</span>
                 </a>
