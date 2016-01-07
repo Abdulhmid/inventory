@@ -17,10 +17,12 @@ class Buying extends Controller
     protected $folder = "module.buy";
     protected $form;
 
-    public function __construct(Md\Items $table
+    public function __construct(Md\Items $table,
+                                Md\Suppliers $suppliers
                                )
     {
         $this->model         = $table;
+        $this->suppliers     = $suppliers;
     }
 
     public function getIndex()
@@ -28,6 +30,18 @@ class Buying extends Controller
         $data['title'] = $this->title;
         $data['breadcrumb'] = $this->url;
         return view($this->folder.'.index', $data);
+    }
+
+    public function getSuppliers(Request $request){
+        $term = $request->get('term');
+        return json_encode($this->suppliers->where('name_company', 'like', '%'.$term.'%')
+                                           ->get()->toArray());
+    }
+
+    public function getItems(Request $request){
+        $term = $request->get('term');
+        return json_encode($this->model->where('name_items', 'like', '%'.$term.'%')
+                                           ->get()->toArray());
     }
 
 }

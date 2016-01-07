@@ -1,12 +1,10 @@
-@extends('main')
+<?php $__env->startSection('style'); ?>
+<link href="<?php echo asset('plugins/datatables/dataTables.bootstrap.css'); ?> "rel="stylesheet" type="text/css"/>    
+<link href="<?php echo asset('plugins/sweet-alert/sweet-alert.css'); ?> "rel="stylesheet" type="text/css"/>
+<link href="<?php echo asset('css/jquery-ui.css'); ?> "rel="stylesheet" type="text/css"/>
+<?php $__env->stopSection(); ?>
 
-@section('style')
-<link href="{!! asset('plugins/datatables/dataTables.bootstrap.css') !!} "rel="stylesheet" type="text/css"/>    
-<link href="{!! asset('plugins/sweet-alert/sweet-alert.css') !!} "rel="stylesheet" type="text/css"/>
-<link href="{!! asset('css/jquery-ui.css') !!} "rel="stylesheet" type="text/css"/>
-@stop
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <section class="content">
 <div class="row">
 	<div class="col-xs-12">
@@ -14,11 +12,11 @@
 			<div class="box-header">
 				<div class="row">
 					<div class="col-xs-6">
-						<h3 class="box-title">{!! $title !!}</h3>
+						<h3 class="box-title"><?php echo $title; ?></h3>
 					</div>
 					<div class="col-xs-6">
 						<div class="pull-right">
-							<a href="{!! url(GLobalHelp::indexUrl().'/create') !!}" data-original-title="Add" data-toggle="tooltip" class="btn btn-primary">
+							<a href="<?php echo url(GLobalHelp::indexUrl().'/create'); ?>" data-original-title="Add" data-toggle="tooltip" class="btn btn-primary">
 								<i class="fa fa-plus"></i> History Pembelian
 							</a>
 						</div>
@@ -26,9 +24,10 @@
 				</div>
 			</div><!-- /.box-header -->
 			<div class="box-body">
-				@if(Session::has('message'))
-					{!! GlobalHelp::messages(Session::get('message'), true) !!}
-				@endif
+				<?php if(Session::has('message')): ?>
+					<?php echo GlobalHelp::messages(Session::get('message'), true); ?>
+
+				<?php endif; ?>
 				<div class="row">
 					<div class="col-md-6">
 						<div class="box box-solid">
@@ -136,11 +135,11 @@
 	</div><!-- /.col -->
 </div><!-- /.row -->
 </section>
-@stop
+<?php $__env->stopSection(); ?>
 
-@section('script') 
-<script src="{!! asset('plugins/sweet-alert/sweet-alert.js') !!} " type="text/javascript"></script>    
-<script src="{!! asset('js/alert.js') !!} " type="text/javascript"></script>    
+<?php $__env->startSection('script'); ?> 
+<script src="<?php echo asset('plugins/sweet-alert/sweet-alert.js'); ?> " type="text/javascript"></script>    
+<script src="<?php echo asset('js/alert.js'); ?> " type="text/javascript"></script>    
 
 <script type="text/javascript">
     $( document ).on( "click", ".delete_item", function( e ) {
@@ -149,6 +148,8 @@
             $(this).parent().fadeOut('slow', function() {
                 $(this).parent().remove();
             });
+            $("#total").change();
+            $("#total_akhir").change();
         }else{
             alert('batal dihapus');
         }
@@ -156,7 +157,7 @@
 
     $(function() {
         $( "#supplier" ).autocomplete({
-           	source: "{!! url(GLobalHelp::indexUrl().'/suppliers') !!}",
+           	source: "<?php echo url(GLobalHelp::indexUrl().'/suppliers'); ?>",
           	focus: function( event, ui ) {
             	$( "#supplier" ).val(ui.item.name_company);
             	return false;
@@ -177,7 +178,7 @@
         };
 
         $( "#item" ).autocomplete({
-           	source: "{!! url(GLobalHelp::indexUrl().'/items') !!}",
+           	source: "<?php echo url(GLobalHelp::indexUrl().'/items'); ?>",
           	focus: function( event, ui ) {
           		console.log("Hallo");
             	$( "#supplier" ).val(ui.item.name_company);
@@ -210,4 +211,6 @@
 
     });
 </script>
-@stop
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
