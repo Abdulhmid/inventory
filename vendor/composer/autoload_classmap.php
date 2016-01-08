@@ -14,6 +14,8 @@ return array(
     'CreateTableItems' => $baseDir . '/database/migrations/2015_12_12_210732_create_table_items.php',
     'CreateTableItemsDetail' => $baseDir . '/database/migrations/2015_12_12_210743_create_table_items_detail.php',
     'CreateTableItemsPrice' => $baseDir . '/database/migrations/2015_12_12_210738_create_table_items_price.php',
+    'CreateTableReturnTransaction' => $baseDir . '/database/migrations/transaction/2016_01_08_192149_create_table_return_transaction.php',
+    'CreateTableSellTransaction' => $baseDir . '/database/migrations/transaction/2016_01_08_192144_create_table_sell_transaction.php',
     'CreateTableSupplier' => $baseDir . '/database/migrations/2015_12_12_210624_create_table_supplier.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2015_11_17_041442_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
