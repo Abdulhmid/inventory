@@ -99,6 +99,10 @@
 												<span class="input-group-btn">
 												 	<button class="btn btn-info btn-flat" type="button"><i class="fa fa-search"></i></button>
 												</span>
+												<span class="input-group-btn">
+													<button class="btn btn-info btn-flat" style="margin-left: 2px;" type="button">Tambah Pembelian</button>
+												</span>
+
 											</div>
 										</div>
 									</div>
@@ -185,8 +189,8 @@
 	            $("table tbody").append($('<tr id="item_'+ui.item.id+'">'+
 	            				'<td>#</td>'+
 	            				'<td>'+ui.item.name_items+'</td>'+
-	            				'<td><input type="number" min="0" id="qty" value="0" class="form-control" /></td>'+
-	            				'<td><input type="number" min="0" id="price-buy" value="0" class="form-control" /></td>'+
+	            				'<td><input type="number" min="0" name="qty['+ui.item.id+']" id="qty_'+ui.item.id+'" class="qty" value="0" class="form-control" /></td>'+
+	            				'<td><input type="number" min="0" name="price-buy['+ui.item.id+']" id="price-buy_'+ui.item.id+'" class="price" value="0" class="form-control" /></td>'+
 	            				// '<td><input type="number" min="0" id="price-sell" value="0" class="form-control" /></td>'+
 	            				'<td>klklk</td>'+
 	                            '<td class="hidden-350"><a rel="tooltip" class="delete_item" title="Hapus Barang" data-original-title="Delete"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></a></td>'+
@@ -202,5 +206,55 @@
         };
 
     });
+
+    $(document).on("keyup change",".qty",function(event){
+        event.preventDefault();
+        var qty         = $(this).val();
+        var lastChar    = qty.slice(-1);
+    	console.log(qty);
+        if(parseInt(qty)<0 || lastChar=='-' || lastChar=='+' || lastChar==':' || lastChar=='*') {
+            $(this).val('1');
+            $("#total").change();
+        }else{
+        	console.log("d");
+            var inputVal = $(this).val();
+            	inputVal     = inputVal.replace(',','');
+            var numericReg = /^\d*[0-9](|.\d*[0-9]|,\d*[0-9])?$/;
+            if(!numericReg.test(inputVal)) {
+                $(this).val(1);
+            }else{
+                var id      = $(this).attr('id');
+                id          = id.split('_');
+                var qty    	= parseInt($(this).val());
+                var price   = $("#price-buy_"+id[1]).val();
+                var total   = qty*price;
+                console.log(total);
+            //     harga           = tot;
+                
+            //     var harga_akhir = addCommas((harga*stok));
+            //     if(harga_akhir!="NaN") {
+            //         $(this).parent().parent().next().next().next().children('span').text(harga_akhir);
+            //     }else{
+            //         $(this).parent().parent().next().next().next().children('span').text('0');
+            //     }
+            //     $("#total").change();
+            }
+        }
+    });
+
+    $(document).on("keyup change",".price",function(event){
+        event.preventDefault();
+        var qty         = $(this).val();
+        var lastChar    = qty.slice(-1);
+    	console.log(qty);
+        if(parseInt(qty)<0 || lastChar=='-' || lastChar=='+' || lastChar==':' || lastChar=='*') {
+            $(this).val('1');
+            $("#total").change();
+        }else{
+
+        }
+    });
+
+
 </script>
 @stop
