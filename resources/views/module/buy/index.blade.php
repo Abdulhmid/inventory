@@ -152,7 +152,7 @@
         }else{
             alert('batal dihapus');
         }
-    });
+    });   
 
     $(function() {
         $( "#supplier" ).autocomplete({
@@ -179,16 +179,9 @@
         $( "#item" ).autocomplete({
            	source: "{!! url(GLobalHelp::indexUrl().'/items') !!}",
           	focus: function( event, ui ) {
-          		console.log("Hallo");
-            	$( "#supplier" ).val(ui.item.name_company);
             	return false;
 	        },
 	        select: function( event, ui ) {
-	          	$("#id_supplier").val(ui.item.supplier_id);
-	          	$("#address").val(ui.item.address);
-	          	$("#telp").val(ui.item.telp);
-	          	$("#email").val(ui.item.email);
-
 	            $("table tbody").append($('<tr id="item_'+ui.item.id+'">'+
 	            				'<td>#</td>'+
 	            				'<td>'+ui.item.name_items+'</td>'+
