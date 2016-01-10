@@ -192,7 +192,7 @@
 	            				'<td><input type="number" min="0" name="qty['+ui.item.id+']" id="qty_'+ui.item.id+'" class="qty" value="0" class="form-control" /></td>'+
 	            				'<td><input type="number" min="0" name="price-buy['+ui.item.id+']" id="price-buy_'+ui.item.id+'" class="price" value="0" class="form-control" /></td>'+
 	            				// '<td><input type="number" min="0" id="price-sell" value="0" class="form-control" /></td>'+
-	            				'<td>klklk</td>'+
+	            				'<td><span class="subtotal_'+ui.item.id+'"></span></td>'+
 	                            '<td class="hidden-350"><a rel="tooltip" class="delete_item" title="Hapus Barang" data-original-title="Delete"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></a></td>'+
 	                        '</tr>').show('slow'));
 
@@ -207,7 +207,7 @@
 
     });
 
-    $(document).on("keyup change",".qty",function(event){
+    $(document).on("keyup change",".qty, .price",function(event){
         event.preventDefault();
         var qty         = $(this).val();
         var lastChar    = qty.slice(-1);
@@ -226,18 +226,19 @@
                 var id      = $(this).attr('id');
                 id          = id.split('_');
                 var qty    	= parseInt($(this).val());
-                var price   = $("#price-buy_"+id[1]).val();
+                var className   = $(this).attr('class');
+                var price   = (className == "qty" ? $("#price-buy_"+id[1]).val() : $("#qty_"+id[1]).val())  ;
+
                 var total   = qty*price;
-                console.log(total);
-            //     harga           = tot;
+                console.log(id[1]);
                 
-            //     var harga_akhir = addCommas((harga*stok));
-            //     if(harga_akhir!="NaN") {
-            //         $(this).parent().parent().next().next().next().children('span').text(harga_akhir);
-            //     }else{
-            //         $(this).parent().parent().next().next().next().children('span').text('0');
-            //     }
-            //     $("#total").change();
+                var subtotal = total;
+                if(subtotal!="NaN") {
+                	$(".subtotal_"+id[1]).text(subtotal);
+                    $(this).parent().parent().next().next().next().children('span').text(subtotal);
+                }else{
+                    $(this).parent().parent().next().next().next().children('span').text('0');
+                }
             }
         }
     });
