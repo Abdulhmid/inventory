@@ -18,11 +18,13 @@ class Buying extends Controller
     protected $form;
 
     public function __construct(Md\Items $table,
-                                Md\Suppliers $suppliers
+                                Md\Suppliers $suppliers,
+                                Md\TransactionBuy $transactionBuy
                                )
     {
-        $this->model         = $table;
-        $this->suppliers     = $suppliers;
+        $this->model            = $table;
+        $this->suppliers        = $suppliers;
+        $this->transactionBuy   = $transactionBuy;
     }
 
     public function getIndex()
@@ -42,6 +44,17 @@ class Buying extends Controller
         $term = $request->get('term');
         return json_encode($this->model->where('name_items', 'like', '%'.$term.'%')
                                            ->get()->toArray());
+    }
+
+    public function postStoreTransaction(Request $request){
+        $input = $request->only('idItemPart','qty','priceBuy');
+        $arrayData = [];
+        $insert['item_id']       = explode(",", $input['idItemPart']);
+        $insert['qty']           = explode(",", $input['qty']);
+        $insert['price_buy']     = explode(",", $input['priceBuy']);
+        $insert['expedition']    = "-";
+        $data = $this->transactionBuy->create($arrayData);
+        return $data;
     }
 
 }
