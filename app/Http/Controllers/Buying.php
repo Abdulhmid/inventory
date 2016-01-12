@@ -53,6 +53,13 @@ class Buying extends Controller
         $insert['qty']           = explode(",", $input['qty']);
         $insert['price_buy']     = explode(",", $input['priceBuy']);
         $insert['expedition']    = "-";
+
+        $dataAct = array(
+            array('item_id'=>1,'price_buy'=>34397, 'qty'=>97, 'expedition' => 'KLJKLSD')
+            //...
+        );
+
+
         $data = $this->transactionBuy->create($arrayData);
         return $data;
     }
