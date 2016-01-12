@@ -1,0 +1,90 @@
+<?php $__env->startSection('style'); ?>
+	<link href="<?php echo asset('plugins/sweet-alert/sweet-alert.css'); ?> "rel="stylesheet" type="text/css"/>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<section class="content">
+<div class="row">
+	<div class="col-md-12">
+		<!-- general form elements -->
+		<div class="box box-primary ">
+			<div class="box-header">
+				<div class="row">
+					<div class="col-xs-6">
+						<h3 class="box-title"><?php echo str_contains(Request::segment(2), 'create') ? 'Tambah' : 'Ubah'; ?> <?php echo $title; ?></h3>
+					</div>
+					<div class="col-xs-6">
+						<div class="pull-right">
+							<a href="<?php echo URL::to(GlobalHelp::indexUrl()); ?>" class="btn btn-default"> 
+								<i class="fa fa-arrow-left"></i> Kembali 
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="box-body">
+				<?php if(Session::has('message')): ?>
+				<?php echo GlobalHelp::messages(Session::get('message')); ?>
+
+				<?php endif; ?>
+
+				<?php /* Form */ ?>
+				<?php echo form_start($form); ?>
+
+				<div class="row">
+					<div class="col-md-12">
+						<!-- Custom Tabs -->
+						<div class="nav-tabs-custom">
+							<ul class="nav nav-tabs">
+							  <li class="active"><a href="#tab_1" data-toggle="tab">Data</a></li>
+							  <li><a href="#tab_2" data-toggle="tab">Harga</a></li>
+							  <li><a href="#tab_3" data-toggle="tab">Keterangan</a></li>
+							  <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+							</ul>
+						    <div class="tab-content">
+						      <div class="tab-pane active" id="tab_1">
+						      	<?php echo form_row($form->supplier_id, ['selected' => isset($row) ? $row->supplier_id : '']); ?>
+
+						      	<?php echo form_row($form->category_id, ['selected' => isset($row) ? $row->category_id : '']); ?>
+
+						      	<?php echo form_row($form->name_items, ['default_value' => isset($row) ? $row->name_items: '']); ?>
+
+						      </div>
+						      <div class="tab-pane" id="tab_2">
+						      	<?php echo form_row($form->price_buy, ['default_value' => isset($row['price']) ? (int)$row['price']->price_buy: '']); ?>
+
+						      	<?php echo form_row($form->price_selling, ['default_value' => isset($row['price']) ? (int)$row['price']->price_selling: '']); ?>
+
+						      </div>
+						      <div class="tab-pane" id="tab_3">
+								<?php echo form_row($form->stok, ['default_value' => isset($row['detail']) ? $row['detail']->stok : '']); ?>
+
+								<?php echo form_row($form->note, ['default_value' => isset($row['detail']) ? $row['detail']->note : '']); ?>
+
+						      </div>
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+					<div class="clearfix"></div>
+					<?php echo $__env->make('partial.form_button', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+				<?php echo form_end($form); ?>
+
+
+				<?php /* End Form */ ?>
+		</div>
+
+	</div>
+</div>
+</section>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('script'); ?>
+	<script src="<?php echo asset('plugins/sweet-alert/sweet-alert.js'); ?> " type="text/javascript"></script>    
+	<script src="<?php echo asset('js/alert.js'); ?> " type="text/javascript"></script>
+	<script type="text/javascript">
+    </script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

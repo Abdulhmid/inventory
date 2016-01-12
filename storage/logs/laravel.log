@@ -9608,3 +9608,58 @@ Stack trace:
 #62 /var/www/riset/inventory/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #63 /var/www/riset/inventory/server.php(21): require_once('/var/www/riset/...')
 #64 {main}  
+[2016-01-09 16:14:09] local.ERROR: exception 'InvalidArgumentException' with message 'Command "db" is not defined.
+
+Did you mean this?
+    db:seed' in /var/www/html/inventory/vendor/symfony/console/Application.php:511
+Stack trace:
+#0 /var/www/html/inventory/vendor/symfony/console/Application.php(186): Symfony\Component\Console\Application->find('db')
+#1 /var/www/html/inventory/vendor/symfony/console/Application.php(120): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#2 /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 /var/www/html/inventory/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 {main}  
+[2016-01-09 16:14:14] local.ERROR: exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'group_id' in 'field list'' in /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Database/Connection.php:390
+Stack trace:
+#0 /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Database/Connection.php(390): PDO->prepare('insert into `gr...')
+#1 /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Database/Connection.php(644): Illuminate\Database\Connection->Illuminate\Database\{closure}(Object(Illuminate\Database\MySqlConnection), 'insert into `gr...', Array)
+#2 /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Database/Connection.php(611): Illuminate\Database\Connection->runQueryCallback('insert into `gr...', Array, Object(Closure))
+#3 /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Database/Connection.php(391): Illuminate\Database\Connection->run('insert into `gr...', Array, Object(Closure))
+#4 /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Database/Connection.php(347): Illuminate\Database\Connection->statement('insert into `gr...', Array)
+#5 /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(1783): Illuminate\Database\Connection->insert('insert into `gr...', Array)
+#6 /var/www/html/inventory/database/seeds/UsersTableSeeder.php(17): Illuminate\Database\Query\Builder->insert(Array)
+#7 /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Database/Seeder.php(42): UsersTableSeeder->run()
+#8 /var/www/html/inventory/database/seeds/DatabaseSeeder.php(18): Illuminate\Database\Seeder->call('UsersTableSeede...')
+#9 /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Database/Console/Seeds/SeedCommand.php(61): DatabaseSeeder->run()
+#10 [internal function]: Illuminate\Database\Console\Seeds\SeedCommand->fire()
+#11 /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Container/Container.php(503): call_user_func_array(Array, Array)
+#12 /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Console/Command.php(150): Illuminate\Container\Container->call(Array)
+#13 /var/www/html/inventory/vendor/symfony/console/Command/Command.php(256): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#14 /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Console/Command.php(136): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#15 /var/www/html/inventory/vendor/symfony/console/Application.php(838): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#16 /var/www/html/inventory/vendor/symfony/console/Application.php(189): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Database\Console\Seeds\SeedCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#17 /var/www/html/inventory/vendor/symfony/console/Application.php(120): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#18 /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#19 /var/www/html/inventory/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#20 {main}
+
+Next exception 'Illuminate\Database\QueryException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'group_id' in 'field list' (SQL: insert into `groups` (`group_id`, `group_name`) values (1, Admin))' in /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Database/Connection.php:651
+Stack trace:
+#0 /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Database/Connection.php(611): Illuminate\Database\Connection->runQueryCallback('insert into `gr...', Array, Object(Closure))
+#1 /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Database/Connection.php(391): Illuminate\Database\Connection->run('insert into `gr...', Array, Object(Closure))
+#2 /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Database/Connection.php(347): Illuminate\Database\Connection->statement('insert into `gr...', Array)
+#3 /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(1783): Illuminate\Database\Connection->insert('insert into `gr...', Array)
+#4 /var/www/html/inventory/database/seeds/UsersTableSeeder.php(17): Illuminate\Database\Query\Builder->insert(Array)
+#5 /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Database/Seeder.php(42): UsersTableSeeder->run()
+#6 /var/www/html/inventory/database/seeds/DatabaseSeeder.php(18): Illuminate\Database\Seeder->call('UsersTableSeede...')
+#7 /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Database/Console/Seeds/SeedCommand.php(61): DatabaseSeeder->run()
+#8 [internal function]: Illuminate\Database\Console\Seeds\SeedCommand->fire()
+#9 /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Container/Container.php(503): call_user_func_array(Array, Array)
+#10 /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Console/Command.php(150): Illuminate\Container\Container->call(Array)
+#11 /var/www/html/inventory/vendor/symfony/console/Command/Command.php(256): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#12 /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Console/Command.php(136): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#13 /var/www/html/inventory/vendor/symfony/console/Application.php(838): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#14 /var/www/html/inventory/vendor/symfony/console/Application.php(189): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Database\Console\Seeds\SeedCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#15 /var/www/html/inventory/vendor/symfony/console/Application.php(120): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#16 /var/www/html/inventory/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#17 /var/www/html/inventory/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#18 {main}  
