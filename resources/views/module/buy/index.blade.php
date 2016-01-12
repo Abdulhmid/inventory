@@ -29,6 +29,7 @@
 				@if(Session::has('message'))
 					{!! GlobalHelp::messages(Session::get('message'), true) !!}
 				@endif
+				{!! Form::open(array('url'=>GLobalHelp::indexUrl().'/store-transaction', 'method' => 'post', 'class'=>'form-horizontal','id'=>'formoid')) !!}
 				<div class="row">
 					<div class="col-md-6">
 						<div class="box box-solid">
@@ -83,7 +84,7 @@
 								</div>		
 								<div class="form-group">
 									<label for="name_category" class="control-label">Total Pembayaran</label><br/>
-									<label id="total" class="control-label">8988</label>
+									<label id="totalFull" class="control-label">8988</label>
 								</div>
 							</div><!-- /.box-body -->
 						</div><!-- /.box -->
@@ -100,8 +101,9 @@
 												 	<button class="btn btn-info btn-flat" type="button"><i class="fa fa-search"></i></button>
 												</span>
 												<span class="input-group-btn">
-													<button class="btn btn-info btn-flat" style="margin-left: 2px;" type="button">Tambah Pembelian</button>
+													<button class="btn btn-info btn-flat" style="margin-left: 2px;" type="submit">Tambah Pembelian</button>
 												</span>
+												<input type="hidden" readonly="true" id="idList" value="">
 
 											</div>
 										</div>
@@ -135,6 +137,7 @@
 						</div><!-- /.box -->
 					</div>
 				</div>
+				{!! Form::close() !!}
 			</div><!-- /.box-body -->
 		</div><!-- /.box -->
 	</div><!-- /.col -->
@@ -159,6 +162,7 @@
     });   
 
     $(function() {
+    	var itemId = [];
         $( "#supplier" ).autocomplete({
            	source: "{!! url(GLobalHelp::indexUrl().'/suppliers') !!}",
           	focus: function( event, ui ) {
@@ -186,16 +190,21 @@
             	return false;
 	        },
 	        select: function( event, ui ) {
-	            $("table tbody").append($('<tr id="item_'+ui.item.id+'">'+
-	            				'<td>#</td>'+
-	            				'<td>'+ui.item.name_items+'</td>'+
-	            				'<td><input type="number" min="0" name="qty['+ui.item.id+']" id="qty_'+ui.item.id+'" class="qty" value="0" class="form-control" /></td>'+
-	            				'<td><input type="number" min="0" name="price-buy['+ui.item.id+']" id="price-buy_'+ui.item.id+'" class="price" value="0" class="form-control" /></td>'+
-	            				// '<td><input type="number" min="0" id="price-sell" value="0" class="form-control" /></td>'+
-	            				'<td><span class="subtotal_'+ui.item.id+'"></span></td>'+
-	                            '<td class="hidden-350"><a rel="tooltip" class="delete_item" title="Hapus Barang" data-original-title="Delete"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></a></td>'+
-	                        '</tr>').show('slow'));
-
+				if ($.inArray(ui.item.id, itemId) < 0) {
+		            $("table tbody").append($('<tr id="item_'+ui.item.id+'">'+
+						'<td>#<input type="hidden" name="idItemPart[]" value="'+ui.item.id+'"/></td>'+
+						'<td>'+ui.item.name_items+'</td>'+
+						'<td><input type="number" min="0" name="qty[]" id="qty_'+ui.item.id+'" class="qty" value="0" class="form-control" /></td>'+
+						'<td><input type="number" min="0" name="price-buy[]" id="price-buy_'+ui.item.id+'" class="price" value="0" class="form-control" /></td>'+
+						// '<td><input type="number" min="0" id="price-sell" value="0" class="form-control" /></td>'+
+						'<td><span class="subtotal_'+ui.item.id+'"></span></td>'+
+		                '<td class="hidden-350"><a rel="tooltip" class="delete_item" title="Hapus Barang" data-original-title="Delete"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></a></td>'+
+		            '</tr>').show('slow'));
+				  	itemId.push(ui.item.id);
+				}else {
+				  	console.log('Pakistan found');
+				}
+				$("#idList").val(itemId);
 	            return false;
 	        }
         })
@@ -234,28 +243,67 @@
                 
                 var subtotal = total;
                 if(subtotal!="NaN") {
-                	$(".subtotal_"+id[1]).text(subtotal);
-                    $(this).parent().parent().next().next().next().children('span').text(subtotal);
+                	$(".subtotal_"+id[1]).text(addCommas(subtotal));
+                    $(this).parent().parent().next().next().next().children('span').text(addCommas(subtotal));
                 }else{
                     $(this).parent().parent().next().next().next().children('span').text('0');
                 }
             }
         }
+        var arrayData = $("#idList").val().split(",");
+        	sum = 0;
+		$.each( arrayData, function( index, value ){
+			sum += parseInt($(".subtotal_"+value).text().replace(/,/g, ''), 10); 
+		});
+		var fullTotal = (sum != "NaN" ? sum : "0") ;
+        $("#totalFull").text(addCommas(fullTotal));
+
     });
 
-    $(document).on("keyup change",".price",function(event){
-        event.preventDefault();
-        var qty         = $(this).val();
-        var lastChar    = qty.slice(-1);
-    	console.log(qty);
-        if(parseInt(qty)<0 || lastChar=='-' || lastChar=='+' || lastChar==':' || lastChar=='*') {
-            $(this).val('1');
-            $("#total").change();
-        }else{
+  	$(function() {
 
+	    // Action Post
+	    $("#formoid").submit(function(event) {
+	      if ($('#id_supplier').val() == "") { alert("Supplier Tidak Boleh Kosong") };
+	      /* stop form from submitting normally */
+	      event.preventDefault();
+
+	      /* get some values from elements on the page: */
+	      var $form = $( this ),
+	          url = $form.attr( 'action' );
+
+	      /* Send the data using post */
+	      var posting = $.post( url, {
+	          qty 	: $('input[name="qty[]"]').map(function() {
+	           		return $(this).val(); }).get().join(),
+	          priceBuy : $('input[name="price-buy[]"]').map(function() {
+	           		return $(this).val(); }).get().join(),
+	          idItemPart : $('input[name="idItemPart[]"]').map(function() {
+	           		return $(this).val(); }).get().join(),
+	          supplier : $('#id_supplier').val(),
+	          itemId : $('#idList').val(),
+	      } );
+
+	      /* Alerts the results */
+	      posting.done(function( data ) {
+	 		console.log(data);
+	      });
+	      return false;
+	    });
+	});
+
+    function addCommas(nStr)
+    {
+        nStr += '';
+        x = nStr.split('.');
+        x1 = x[0];
+        x2 = x.length > 1 ? '.' + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + ',' + '$2');
         }
-    });
-
+        return x1 + x2;
+    }
 
 </script>
 @stop
