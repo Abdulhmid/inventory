@@ -48,20 +48,29 @@ class Buying extends Controller
 
     public function postStoreTransaction(Request $request){
         $input = $request->only('idItemPart','qty','priceBuy');
-        $arrayData = [];
-        $insert['item_id']       = explode(",", $input['idItemPart']);
-        $insert['qty']           = explode(",", $input['qty']);
-        $insert['price_buy']     = explode(",", $input['priceBuy']);
-        $insert['expedition']    = "-";
+        
+        try {
+            $arrayData = [];
+            $itemId       = explode(",", $input['idItemPart']);
+            $qty           = explode(",", $input['qty']);
+            $priceBuy     = explode(",", $input['priceBuy']);
 
-        $dataAct = array(
-            array('item_id'=>1,'price_buy'=>34397, 'qty'=>97, 'expedition' => 'KLJKLSD')
-            //...
-        );
+            for ($i=0; $i < count($itemId) ; $i++) { 
+                $insert['item_id'] = $itemId[$i] ;
+                $insert['qty'] = $qty[$i] ;
+                $insert['price_buy'] = $priceBuy[$i] ;
+                $insert['expedition'] = "-";
+                $insert['created_at'] = \Carbon\Carbon::now();
+                $insert['updated_at'] = \Carbon\Carbon::now();
+                array_push($arrayData, $insert);
+            }
 
+            $data = $this->transactionBuy->insert($arrayData);
+            return "1";            
+        } catch (Exception $e) {
+            return "0";
+        }
 
-        $data = $this->transactionBuy->create($arrayData);
-        return $data;
     }
 
 }

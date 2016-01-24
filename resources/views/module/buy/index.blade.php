@@ -84,7 +84,7 @@
 								</div>		
 								<div class="form-group">
 									<label for="name_category" class="control-label">Total Pembayaran</label><br/>
-									<label id="totalFull" class="control-label">8988</label>
+									<label id="totalFull" class="control-label">0</label>
 								</div>
 							</div><!-- /.box-body -->
 						</div><!-- /.box -->
@@ -102,6 +102,9 @@
 												</span>
 												<span class="input-group-btn">
 													<button class="btn btn-info btn-flat" style="margin-left: 2px;" type="submit">Tambah Pembelian</button>
+												</span>
+												<span class="input-group-btn">
+													<button class="btn btn-info btn-flat" style="margin-left: 2px;" id="print" type="button">Cetak</button>
 												</span>
 												<input type="hidden" readonly="true" id="idList" value="">
 
@@ -162,6 +165,7 @@
     });   
 
     $(function() {
+    	$('#print').prop('disabled', true);
     	var itemId = [];
         $( "#supplier" ).autocomplete({
            	source: "{!! url(GLobalHelp::indexUrl().'/suppliers') !!}",
@@ -197,8 +201,8 @@
 						'<td><input type="number" min="0" name="qty[]" id="qty_'+ui.item.id+'" class="qty" value="0" class="form-control" /></td>'+
 						'<td><input type="number" min="0" name="price-buy[]" id="price-buy_'+ui.item.id+'" class="price" value="0" class="form-control" /></td>'+
 						// '<td><input type="number" min="0" id="price-sell" value="0" class="form-control" /></td>'+
-						'<td><span class="subtotal_'+ui.item.id+'"></span></td>'+
-		                '<td class="hidden-350"><a rel="tooltip" class="delete_item" title="Hapus Barang" data-original-title="Delete"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></a></td>'+
+						'<td><span class="subtotal_'+ui.item.id+'">0</span></td>'+
+		                '<td class="hidden-350"><a rel="tooltip" class="delete_item" title="Hapus Barang" data-original-title="Delete"><button id="delete" class="btn btn-danger"><i class="fa fa-trash"></i></button></a></td>'+
 		            '</tr>').show('slow'));
 				  	itemId.push(ui.item.id);
 				}else {
@@ -220,12 +224,10 @@
         event.preventDefault();
         var qty         = $(this).val();
         var lastChar    = qty.slice(-1);
-    	console.log(qty);
         if(parseInt(qty)<0 || lastChar=='-' || lastChar=='+' || lastChar==':' || lastChar=='*') {
             $(this).val('1');
             $("#total").change();
         }else{
-        	console.log("d");
             var inputVal = $(this).val();
             	inputVal     = inputVal.replace(',','');
             var numericReg = /^\d*[0-9](|.\d*[0-9]|,\d*[0-9])?$/;
@@ -239,7 +241,6 @@
                 var price   = (className == "qty" ? $("#price-buy_"+id[1]).val() : $("#qty_"+id[1]).val())  ;
 
                 var total   = qty*price;
-                console.log(id[1]);
                 
                 var subtotal = total;
                 if(subtotal!="NaN") {
@@ -286,6 +287,14 @@
 
 	      /* Alerts the results */
 	      posting.done(function( data ) {
+	      	if(data == "1"){
+	      		$('button[type="submit"]').prop('disabled', true);
+	      		$('#delete').prop('disabled', true);
+	      		$('#item').prop('disabled', true);
+	      		$('#print').prop('disabled', false);
+	      	}else{
+	      		
+	      	}
 	 		console.log(data);
 	      });
 	      return false;

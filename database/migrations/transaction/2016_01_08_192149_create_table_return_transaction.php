@@ -26,7 +26,6 @@ class CreateTableReturnTransaction extends Migration
               $table->text('description');
 
               /* Action */
-              $table->nullableTimestamps();
 
               /* Relastio */
               $table->integer('item_id')->unsigned();
@@ -38,6 +37,8 @@ class CreateTableReturnTransaction extends Migration
               $table->foreign('transaction_buy_id')->references('transaction_buy_id')
                 ->on('transaction_buy')->onDelete('cascade')
                 ->onUpdate('cascade');
+                
+              $table->timestamps();
           });
       }
     }

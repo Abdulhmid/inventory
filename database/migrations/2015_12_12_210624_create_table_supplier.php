@@ -15,16 +15,16 @@ class CreateTableSupplier extends Migration
     {
       if (!Schema::hasTable($this->table)) {
           Schema::create($this->table, function (Blueprint $table) {
-              $table->increments('menu_id');
-              $table->integer('parent_id');
-              $table->string('menu_name');
-              $table->string('menu_type','60');
-              $table->string('telp');
+              $table->engine = 'InnoDB';
+              $table->increments('supplier_id');
+              $table->string('name_company');
+              $table->string('handphone');
+              $table->string('telp','60');
               $table->string('email');
               $table->string('website');
-              $table->text('photo')->nullable();
-              $table->tinyInteger('allow_guest')->default(0);
               $table->tinyInteger('active')->default(0);
+              $table->string('photo')->nullable();
+              $table->text('address')->nullable();
 
               $table->string('created_by')->default('system');
               $table->softDeletes();

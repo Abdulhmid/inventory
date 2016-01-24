@@ -26,7 +26,6 @@ class CreateTableSellTransaction extends Migration
               $table->text('expedition')->nullable();
 
               /* Action */
-              $table->nullableTimestamps();
 
               /* Relastio */
               $table->integer('item_id')->unsigned();
@@ -34,6 +33,8 @@ class CreateTableSellTransaction extends Migration
               $table->foreign('item_id')->references('id')
                 ->on('items')->onDelete('cascade')
                 ->onUpdate('cascade');
+                
+              $table->timestamps();
           });
       }
     }

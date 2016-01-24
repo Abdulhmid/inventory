@@ -16,7 +16,7 @@ class CreateTableBuyTransaction extends Migration
       if (!Schema::hasTable($this->table)) {
 
           Schema::create($this->table, function (Blueprint $table) {
-
+              $table->engine = 'InnoDB';
               /** Primary key  */
               $table->increments('transaction_buy_id');
 
@@ -26,7 +26,6 @@ class CreateTableBuyTransaction extends Migration
               $table->text('expedition');
 
               /* Action */
-              $table->nullableTimestamps();
 
               /* Relastio */
               $table->integer('item_id')->unsigned();
@@ -34,6 +33,8 @@ class CreateTableBuyTransaction extends Migration
               $table->foreign('item_id')->references('id')
                 ->on('items')->onDelete('cascade')
                 ->onUpdate('cascade');
+                
+              $table->timestamps();
           });
       }
     }

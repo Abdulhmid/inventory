@@ -16,7 +16,7 @@ class CreateTableItemsPrice extends Migration
       if (!Schema::hasTable($this->table)) {
 
           Schema::create($this->table, function (Blueprint $table) {
-
+              $table->engine = 'InnoDB';
               /** Primary key  */
               $table->increments('item_price_id');
 
