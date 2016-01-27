@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "hash": "5efe98fc423b6c47b8518eea0d1e8922",
+    "content-hash": "0258e2113598ddb62a24e94f920b8350",
     "packages": [
         {
             "name": "anchu/ftp",

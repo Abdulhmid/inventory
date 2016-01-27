@@ -54,7 +54,7 @@ class Buying extends Controller
             $itemId       = explode(",", $input['idItemPart']);
             $qty           = explode(",", $input['qty']);
             $priceBuy     = explode(",", $input['priceBuy']);
-
+            $keyTrans = \Uuid::generate();
             for ($i=0; $i < count($itemId) ; $i++) { 
                 $insert['item_id'] = $itemId[$i] ;
                 $insert['qty'] = $qty[$i] ;
@@ -62,15 +62,24 @@ class Buying extends Controller
                 $insert['expedition'] = "-";
                 $insert['created_at'] = \Carbon\Carbon::now();
                 $insert['updated_at'] = \Carbon\Carbon::now();
+                $insert['key_transaction'] = $keyTrans;
                 array_push($arrayData, $insert);
             }
 
             $data = $this->transactionBuy->insert($arrayData);
-            return "1";            
+            return $keyTrans;            
         } catch (Exception $e) {
             return "0";
         }
 
+    }
+
+    /*
+    ** Nota Pembelian
+    */
+
+    public function getNota($keyTrans = ""){
+        
     }
 
 }

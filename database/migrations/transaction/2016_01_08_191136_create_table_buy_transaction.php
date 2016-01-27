@@ -24,6 +24,7 @@ class CreateTableBuyTransaction extends Migration
               $table->integer('qty');
               $table->decimal('price_buy',10,2);
               $table->text('expedition');
+              $table->string('key_transaction');
 
               /* Action */
 

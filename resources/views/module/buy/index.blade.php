@@ -202,7 +202,7 @@
 						'<td><input type="number" min="0" name="price-buy[]" id="price-buy_'+ui.item.id+'" class="price" value="0" class="form-control" /></td>'+
 						// '<td><input type="number" min="0" id="price-sell" value="0" class="form-control" /></td>'+
 						'<td><span class="subtotal_'+ui.item.id+'">0</span></td>'+
-		                '<td class="hidden-350"><a rel="tooltip" class="delete_item" title="Hapus Barang" data-original-title="Delete"><button id="delete" class="btn btn-danger"><i class="fa fa-trash"></i></button></a></td>'+
+		                '<td class="hidden-350"><a rel="tooltip" class="delete_item" title="Hapus Barang" data-original-title="Delete"><button class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></button></a></td>'+
 		            '</tr>').show('slow'));
 				  	itemId.push(ui.item.id);
 				}else {
@@ -217,6 +217,12 @@
             .append( "<a><strong>" + item.name_items +"</strong></a>" )
             .appendTo( ul );
         };
+
+        /* Action Print Nota */
+		$("#print").on('click', function(){
+			var url = "{!! url(GLobalHelp::indexUrl().'/nota') !!}"+"/"+$("#idList").val();    
+			$(location).attr('href',url);
+		});
 
     });
 
@@ -287,15 +293,13 @@
 
 	      /* Alerts the results */
 	      posting.done(function( data ) {
-	      	if(data == "1"){
 	      		$('button[type="submit"]').prop('disabled', true);
-	      		$('#delete').prop('disabled', true);
+	      		$('.delete_item').prop('disabled', true);
+	      		$('.btn-delete').prop('disabled', true);
 	      		$('#item').prop('disabled', true);
 	      		$('#print').prop('disabled', false);
-	      	}else{
-	      		
-	      	}
-	 		console.log(data);
+	      		$("#idList").val(data);
+		 		console.log(data);
 	      });
 	      return false;
 	    });
