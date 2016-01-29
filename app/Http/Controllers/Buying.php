@@ -17,12 +17,17 @@ class Buying extends Controller
     protected $folder = "module.buy";
     protected $form;
 
-    public function __construct(Md\Items $table,
-                                Md\Suppliers $suppliers,
-                                Md\TransactionBuy $transactionBuy
-                               )
+    public function __construct(
+        Md\Items $table,
+        Md\ItemDetail $itemDetail,
+        Md\ItemPrice $itemPrice,
+        Md\Suppliers $suppliers,
+        Md\TransactionBuy $transactionBuy
+    )
     {
         $this->model            = $table;
+        $this->itemDetail       = $itemDetail;
+        $this->itemPrice        = $itemPrice;
         $this->suppliers        = $suppliers;
         $this->transactionBuy   = $transactionBuy;
     }
@@ -56,6 +61,12 @@ class Buying extends Controller
             $priceBuy     = explode(",", $input['priceBuy']);
             $keyTrans = \Uuid::generate();
             for ($i=0; $i < count($itemId) ; $i++) { 
+                /* Update Stok */
+                    $this->updateStok($itemId[$i], $qty[$i]);
+
+                /* Update Price */
+                    $this->updatePrice($itemId[$i], $priceBuy[$i]);
+
                 $insert['item_id'] = $itemId[$i] ;
                 $insert['qty'] = $qty[$i] ;
                 $insert['price_buy'] = $priceBuy[$i] ;
@@ -72,6 +83,18 @@ class Buying extends Controller
             return "0";
         }
 
+    }
+
+    private function updateStok($itemId, $stok){
+        $query = $this->itemDetail->where(['item_id' => $itemId]);
+        $input['stok'] = $query->first()->stok + $stok;
+        $query->update($input);
+    }
+
+    private function updatePrice($itemId, $price){
+        $query = $this->itemPrice->where(['item_id' => $itemId]);
+        $input['price_buy'] = $price;
+        $query->update($input);
     }
 
     /*
