@@ -11,6 +11,9 @@ class TransactionBuy extends Model {
     public $timestamps = true;
     protected $guarded = ['transaction_buy_id'];
 
+	public function item() {
+		return $this->hasOne(Items::class, 'id', 'item_id');
+	}
 
 }
 ?>

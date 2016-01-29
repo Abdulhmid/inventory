@@ -79,7 +79,9 @@ class Buying extends Controller
     */
 
     public function getNota($keyTrans = ""){
-        
+        $data['dataQuery'] = $this->transactionBuy->with('item')->where(['key_transaction' => $keyTrans])->get();
+        $pdf = \PDF::loadView($this->folder.'.nota', $data);
+        return $pdf->stream('invoiceoioiio.pdf');
     }
 
 }

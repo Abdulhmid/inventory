@@ -22,6 +22,10 @@ class Items extends Model {
 		return $this->belongsTo(Suppliers::class, 'supplier_id', 'supplier_id');
 	}
 
+    public function transbuy() {
+        return $this->belongsTo(TransactionBuy::class, 'id', 'item_id');
+    }
+
     /**
      * Validation Users CRUD
      */
