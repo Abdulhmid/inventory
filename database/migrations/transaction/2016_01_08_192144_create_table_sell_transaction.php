@@ -24,6 +24,7 @@ class CreateTableSellTransaction extends Migration
               $table->integer('qty');
               $table->decimal('price_sell',10,2);
               $table->text('expedition')->nullable();
+              $table->string('key_transaction');
 
               /* Action */
 

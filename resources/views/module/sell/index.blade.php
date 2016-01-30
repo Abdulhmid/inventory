@@ -124,7 +124,7 @@
 										  <th style="width: 10px">#</th>
 										  <th>Nama Barang</th>
 										  <th>QTY</th>
-										  <th>Harga Beli</th>
+										  <th>Harga</th>
 										  <!-- <th>Harga Jual</th> -->
 										  <th>Sub Total</th>
 										  <th style="width: 40px">Aksi</th>
