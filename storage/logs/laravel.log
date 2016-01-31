@@ -14157,3 +14157,57 @@ Stack trace:
 #54 /var/www/riset/inventory/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(87): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #55 /var/www/riset/inventory/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #56 {main}  
+[2016-01-31 07:42:43] local.ERROR: exception 'InvalidArgumentException' with message 'There are no commands defined in the "default" namespace.' in /var/www/project/new/inventor/vendor/symfony/console/Application.php:465
+Stack trace:
+#0 /var/www/project/new/inventor/vendor/symfony/console/Application.php(497): Symfony\Component\Console\Application->findNamespace('default')
+#1 /var/www/project/new/inventor/vendor/symfony/console/Application.php(186): Symfony\Component\Console\Application->find('default:data')
+#2 /var/www/project/new/inventor/vendor/symfony/console/Application.php(120): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 /var/www/project/new/inventor/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 /var/www/project/new/inventor/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#5 {main}  
+[2016-01-31 15:41:54] local.ERROR: exception 'RuntimeException' with message 'The exit status code '1' says something went wrong:
+stderr: "Loading pages (1/6)
+[>                                                           ] 0%[======>                                                     ] 10%[=======>                                                    ] 12%[============================================================] 100%Counting pages (2/6)                                               
+[============================================================] Object 1 of 1Resolving links (4/6)                                                       
+[============================================================] Object 1 of 1Loading headers and footers (5/6)                                           
+Printing pages (6/6)
+[>                                                           ] Preparing[============================================================] Page 1 of 1Done                                                                      
+Exit with code 1 due to network error: HostNotFoundError
+"
+stdout: ""
+command: /var/www/project/new/inventor/vendor/h4cc/wkhtmltopdf-i386/bin/wkhtmltopdf-i386 --lowquality '/tmp/knp_snappy56adc8d025e242.84380797.html' '/tmp/knp_snappy56adc8d025ed86.04652968.pdf'.' in /var/www/project/new/inventor/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php:336
+Stack trace:
+#0 /var/www/project/new/inventor/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(151): Knp\Snappy\AbstractGenerator->checkProcessStatus(1, NULL, 'Loading pages (...', '/var/www/projec...')
+#1 /var/www/project/new/inventor/vendor/knplabs/knp-snappy/src/Knp/Snappy/Pdf.php(62): Knp\Snappy\AbstractGenerator->generate(Array, '/tmp/knp_snappy...', Array, false)
+#2 /var/www/project/new/inventor/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(180): Knp\Snappy\Pdf->generate(Array, '/tmp/knp_snappy...', Array)
+#3 /var/www/project/new/inventor/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(201): Knp\Snappy\AbstractGenerator->getOutput(Array, Array)
+#4 /var/www/project/new/inventor/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(149): Knp\Snappy\AbstractGenerator->getOutputFromHtml('<!DOCTYPE html>...', Array)
+#5 /var/www/project/new/inventor/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(204): Barryvdh\Snappy\PdfWrapper->output()
+#6 [internal function]: Barryvdh\Snappy\PdfWrapper->Barryvdh\Snappy\{closure}()
+#7 /var/www/project/new/inventor/vendor/symfony/http-foundation/StreamedResponse.php(95): call_user_func(Object(Closure))
+#8 /var/www/project/new/inventor/vendor/symfony/http-foundation/Response.php(370): Symfony\Component\HttpFoundation\StreamedResponse->sendContent()
+#9 /var/www/project/new/inventor/public/index.php(56): Symfony\Component\HttpFoundation\Response->send()
+#10 {main}  
+[2016-01-31 15:41:56] local.ERROR: exception 'RuntimeException' with message 'The exit status code '1' says something went wrong:
+stderr: "Loading pages (1/6)
+[>                                                           ] 0%[======>                                                     ] 10%[=======>                                                    ] 12%[============================================================] 100%Counting pages (2/6)                                               
+[============================================================] Object 1 of 1Resolving links (4/6)                                                       
+[============================================================] Object 1 of 1Loading headers and footers (5/6)                                           
+Printing pages (6/6)
+[>                                                           ] Preparing[============================================================] Page 1 of 1Done                                                                      
+Exit with code 1 due to network error: HostNotFoundError
+"
+stdout: ""
+command: /var/www/project/new/inventor/vendor/h4cc/wkhtmltopdf-i386/bin/wkhtmltopdf-i386 --lowquality '/tmp/knp_snappy56adc8d39aed21.70928685.html' '/tmp/knp_snappy56adc8d39af545.19431714.pdf'.' in /var/www/project/new/inventor/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php:336
+Stack trace:
+#0 /var/www/project/new/inventor/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(151): Knp\Snappy\AbstractGenerator->checkProcessStatus(1, NULL, 'Loading pages (...', '/var/www/projec...')
+#1 /var/www/project/new/inventor/vendor/knplabs/knp-snappy/src/Knp/Snappy/Pdf.php(62): Knp\Snappy\AbstractGenerator->generate(Array, '/tmp/knp_snappy...', Array, false)
+#2 /var/www/project/new/inventor/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(180): Knp\Snappy\Pdf->generate(Array, '/tmp/knp_snappy...', Array)
+#3 /var/www/project/new/inventor/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(201): Knp\Snappy\AbstractGenerator->getOutput(Array, Array)
+#4 /var/www/project/new/inventor/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(149): Knp\Snappy\AbstractGenerator->getOutputFromHtml('<!DOCTYPE html>...', Array)
+#5 /var/www/project/new/inventor/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(204): Barryvdh\Snappy\PdfWrapper->output()
+#6 [internal function]: Barryvdh\Snappy\PdfWrapper->Barryvdh\Snappy\{closure}()
+#7 /var/www/project/new/inventor/vendor/symfony/http-foundation/StreamedResponse.php(95): call_user_func(Object(Closure))
+#8 /var/www/project/new/inventor/vendor/symfony/http-foundation/Response.php(370): Symfony\Component\HttpFoundation\StreamedResponse->sendContent()
+#9 /var/www/project/new/inventor/public/index.php(56): Symfony\Component\HttpFoundation\Response->send()
+#10 {main}  

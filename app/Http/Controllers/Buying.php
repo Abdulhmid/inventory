@@ -67,6 +67,9 @@ class Buying extends Controller
                 /* Update Price */
                     $this->updatePrice($itemId[$i], $priceBuy[$i]);
 
+                /* Update Price */
+                    $this->updatePriceSell($itemId[$i], $priceBuy[$i]);
+
                 $insert['item_id'] = $itemId[$i] ;
                 $insert['qty'] = $qty[$i] ;
                 $insert['price_buy'] = $priceBuy[$i] ;
@@ -94,6 +97,13 @@ class Buying extends Controller
     private function updatePrice($itemId, $price){
         $query = $this->itemPrice->where(['item_id' => $itemId]);
         $input['price_buy'] = $price;
+        $query->update($input);
+    }
+
+    private function updatePriceSell($itemId, $price){
+        $query = $this->itemPrice->where(['item_id' => $itemId]);
+        $priceSell = $price + ((50/100) * $price) ;
+        $input['price_selling'] = $priceSell;
         $query->update($input);
     }
 

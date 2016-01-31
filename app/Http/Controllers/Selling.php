@@ -47,8 +47,9 @@ class Selling extends Controller
 
     public function getItems(Request $request){
         $term = $request->get('term');
-        return json_encode($this->model->where('name_items', 'like', '%'.$term.'%')
-                                           ->get()->toArray());
+        return json_encode($this->model->with(['supplier','detail','price'])
+                                ->where('name_items', 'like', '%'.$term.'%')
+                                ->get()->toArray());
     }
 
     /*
