@@ -30,6 +30,7 @@
 					{!! GlobalHelp::messages(Session::get('message'), true) !!}
 				@endif
 				{!! Form::open(array('url'=>GLobalHelp::indexUrl().'/store-transaction', 'method' => 'post', 'class'=>'form-horizontal','id'=>'formoid')) !!}
+				
 				<div class="row">
 					<div class="col-md-6">
 						<div class="box box-solid">
@@ -191,10 +192,8 @@
         idStok          = idStok.split('_');
         var stok = $("#stok_"+idStok[1]).val();
 
-        console.log("Qty Ini : "+$("#qty_"+idStok[1]).val());
-        console.log("Stok : "+stok);
-
-        if($("#qty_"+idStok[1]).val() > stok) {
+        if($("#qty_"+idStok[1]).val() > parseInt(stok)) {
+			sweetAlert("Oops...", "Jumlah Melebihi Kuota!", "error");
         	$('#saveTrans').prop('disabled', true);
         }else{
         	$('#saveTrans').prop('disabled', false);
@@ -253,6 +252,7 @@
 
 	      /* Send the data using post */
 	      var posting = $.post( url, {
+	      	  _token: $('#formoid > input[name="_token"]').val(),
 	          qty 	: $('input[name="qty[]"]').map(function() {
 	           		return $(this).val(); }).get().join(),
 	          priceBuy : $('input[name="price-buy[]"]').map(function() {

@@ -17,7 +17,7 @@
 					<div class="col-xs-6">
 						<div class="pull-right">
 							<a href="<?php echo url(GLobalHelp::indexUrl().'/create'); ?>" data-original-title="Add" data-toggle="tooltip" class="btn btn-primary">
-								<i class="fa fa-plus"></i> History Pembelian
+								<i class="fa fa-plus"></i> History Penjualan
 							</a>
 						</div>
 					</div>
@@ -30,6 +30,7 @@
 				<?php endif; ?>
 				<?php echo Form::open(array('url'=>GLobalHelp::indexUrl().'/store-transaction', 'method' => 'post', 'class'=>'form-horizontal','id'=>'formoid')); ?>
 
+				
 				<div class="row">
 					<div class="col-md-6">
 						<div class="box box-solid">
@@ -39,29 +40,23 @@
 							</div><!-- /.box-header -->
 							<div class="box-body">
 								<div class="form-group">
-									<label for="name_supplier" class="control-label">Nama Supplier</label>
+									<label for="name_supplier" class="control-label">Nama Barang</label>
 									<div class="input-group input-group-sm">
-										<input type="text" name="supplier" id="supplier" class="form-control">
+										<input type="text" name="item" id="item" class="form-control">
 										<span class="input-group-btn">
 										  <button class="btn btn-info btn-flat" type="button"><i class="fa fa-search"></i></button>
 										</span>
-										<input type="hidden" id="id_supplier" value="">
 									</div>
-								</div>
-								<div class="form-group">
-									<label for="address" class="control-label">Alamat</label>
-									<input class="form-control" name="address" type="text" id="address" readonly="true">
 								</div>
 								<div class="form-group">
 									<div class="row">
 										<div class="col-xs-6">
-											<label for="no_telp" class="control-label">No Telp</label>
-										  	<input type="text" name="telp" id="telp" class="form-control" placeholder="No Telp" readonly="true">
+											<button class="btn btn-info pull-left" id="saveTrans" type="submit">Simpan Transaksi</button>
 										</div>
 										<div class="col-xs-6">
-											<label for="email" class="control-label">Email</label>
-										  	<input type="text" id="email" name="email" class="form-control" placeholder="email" readonly="true">
+											<button class="btn btn-info pull-right" id="print">Cetak</button>
 										</div>
+										<input type="hidden" readonly="true" id="idList" value="">
 									</div>
 								</div>
 							</div>
@@ -95,24 +90,6 @@
 								<div class="box-header">
 									<div class="col-md-6">
 										<div class="pull-left">
-											<div class="input-group input-group-sm" style="margin-left: -20px;width: 67%;">
-												<input type="text" name="item" id="item" class="form-control">
-												<span class="input-group-btn">
-												 	<button class="btn btn-info btn-flat" type="button"><i class="fa fa-search"></i></button>
-												</span>
-												<span class="input-group-btn">
-													<button class="btn btn-info btn-flat" style="margin-left: 2px;" type="submit">Simpan Transaksi</button>
-												</span>
-												<span class="input-group-btn">
-													<button class="btn btn-info btn-flat" style="margin-left: 2px;" id="print" type="button">Cetak</button>
-												</span>
-												<input type="hidden" readonly="true" id="idList" value="">
-
-											</div>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="pull-right">
 											<h3 class="box-title">Daftar Barang</h3>
 										</div>
 									</div>
@@ -124,7 +101,7 @@
 										  <th style="width: 10px">#</th>
 										  <th>Nama Barang</th>
 										  <th>QTY</th>
-										  <th>Harga Beli</th>
+										  <th>Harga</th>
 										  <!-- <th>Harga Jual</th> -->
 										  <th>Sub Total</th>
 										  <th style="width: 40px">Aksi</th>
@@ -168,26 +145,6 @@
     $(function() {
     	$('#print').prop('disabled', true);
     	var itemId = [];
-        $( "#supplier" ).autocomplete({
-           	source: "<?php echo url(GLobalHelp::indexUrl().'/suppliers'); ?>",
-          	focus: function( event, ui ) {
-            	$( "#supplier" ).val(ui.item.name_company);
-            	return false;
-	        },
-	        select: function( event, ui ) {
-	          	$("#id_supplier").val(ui.item.supplier_id);
-	          	$("#address").val(ui.item.address);
-	          	$("#telp").val(ui.item.telp);
-	          	$("#email").val(ui.item.email);
-
-	            return false;
-	        }
-        })
-        .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-          return $( "<li>" )
-            .append( "<a><strong>" + item.name_company + " | "+ item.website + "</strong><br>" + item.email +"</a>" )
-            .appendTo( ul );
-        };
 
         $( "#item" ).autocomplete({
            	source: "<?php echo url(GLobalHelp::indexUrl().'/items'); ?>",
@@ -199,8 +156,9 @@
 		            $("table tbody").append($('<tr id="item_'+ui.item.id+'">'+
 						'<td>#<input type="hidden" name="idItemPart[]" value="'+ui.item.id+'"/></td>'+
 						'<td>'+ui.item.name_items+'</td>'+
-						'<td><input type="number" min="0" name="qty[]" id="qty_'+ui.item.id+'" class="qty" value="0" class="form-control" /></td>'+
-						'<td><input type="number" min="0" name="price-buy[]" id="price-buy_'+ui.item.id+'" class="price" value="0" class="form-control" /></td>'+
+						'<td><input type="number" min="0" name="qty[]" id="qty_'+ui.item.id+'" class="qty" value="0" class="form-control" />'+
+						'<input type="hidden" min="0" name="stok[]" id="stok_'+ui.item.id+'" class="stok" value="'+ui.item.detail.stok+'" class="form-control" /></td>'+
+						'<td><input type="number" min="0" name="price-buy[]" id="price-buy_'+ui.item.id+'" class="price" value="'+ui.item.price.price_selling+'" readonly="true" class="form-control" /></td>'+
 						// '<td><input type="number" min="0" id="price-sell" value="0" class="form-control" /></td>'+
 						'<td><span class="subtotal_'+ui.item.id+'">0</span></td>'+
 		                '<td class="hidden-350"><a rel="tooltip" class="delete_item" title="Hapus Barang" data-original-title="Delete"><button class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></button></a></td>'+
@@ -215,7 +173,7 @@
         })
         .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
           return $( "<li>" )
-            .append( "<a><strong>" + item.name_items +"</strong></a>" )
+            .append( "<a><strong>" + item.name_items + "<br/> Suppliers : " + item.supplier.name_company +"</strong></a>" )
             .appendTo( ul );
         };
 
@@ -229,6 +187,19 @@
 
     $(document).on("keyup change",".qty, .price",function(event){
         event.preventDefault();
+
+        /* Check Stok */
+        var idStok      = $(this).attr('id');
+        idStok          = idStok.split('_');
+        var stok = $("#stok_"+idStok[1]).val();
+
+        if($("#qty_"+idStok[1]).val() > parseInt(stok)) {
+			sweetAlert("Oops...", "Jumlah Melebihi Kuota!", "error");
+        	$('#saveTrans').prop('disabled', true);
+        }else{
+        	$('#saveTrans').prop('disabled', false);
+        }
+
         var qty         = $(this).val();
         var lastChar    = qty.slice(-1);
         if(parseInt(qty)<0 || lastChar=='-' || lastChar=='+' || lastChar==':' || lastChar=='*') {
@@ -282,6 +253,7 @@
 
 	      /* Send the data using post */
 	      var posting = $.post( url, {
+	      	  _token: $('#formoid > input[name="_token"]').val(),
 	          qty 	: $('input[name="qty[]"]').map(function() {
 	           		return $(this).val(); }).get().join(),
 	          priceBuy : $('input[name="price-buy[]"]').map(function() {
