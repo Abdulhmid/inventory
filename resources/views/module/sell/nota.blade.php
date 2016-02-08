@@ -41,19 +41,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                      {{--*/ $totalBuy = 0; /*--}}
+                      {{--*/ $totalSell = 0; /*--}}
                       @foreach($dataQuery as $key => $value)
                       <tr>
                         <td height="">{{$value['item']['name_items']}}</td>
                         <td height="">{{ GlobalHelp::idrFormat($value->qty)}}</td>
-                        <td height="">{{ GlobalHelp::idrFormat($value->price_buy)}}</td>
-                        <td height="" align="right">{{  GlobalHelp::idrFormat($value->qty*$value->price_buy) }}</td>
+                        <td height="">{{ GlobalHelp::idrFormat($value->price_sell)}}</td>
+                        <td height="" align="right">{{  GlobalHelp::idrFormat($value->qty*$value->price_sell) }}</td>
                       </tr>
-                      {{--*/ $totalBuy += $value->qty*$value->price_buy; /*--}}
+                      {{--*/ $totalSell += $value->qty*$value->price_sell; /*--}}
                       @endforeach
                       <tr>
                         <td>Total</td>
-                        <td colspan="3" align="right">{{ GlobalHelp::idrFormat($totalBuy)}}</td>
+                        <td colspan="3" align="right">{{ GlobalHelp::idrFormat($totalSell)}}</td>
                       </tr>
                     </tbody>
                 </table>
@@ -63,7 +63,7 @@
             <div class="col-xs-12">
                 <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
                     Note :<br/>
-                    Nota Pembelian.
+                    Nota Penjualan.
                 </p>
             </div>
         </div>

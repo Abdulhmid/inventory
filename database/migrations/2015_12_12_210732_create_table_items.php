@@ -22,6 +22,7 @@ class CreateTableItems extends Migration
 
               /** Main data  */
               $table->string('name_items', 255);
+              $table->string('unit', 255)->nullable();
 
               /* Action */
               $table->nullableTimestamps();
