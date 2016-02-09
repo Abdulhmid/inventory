@@ -46,6 +46,7 @@
 						      	{!! form_row($form->supplier_id, ['selected' => isset($row) ? $row->supplier_id : '']) !!}
 						      	{!! form_row($form->category_id, ['selected' => isset($row) ? $row->category_id : '']) !!}
 						      	{!! form_row($form->name_items, ['default_value' => isset($row) ? $row->name_items: '']) !!}
+						      	{!! form_row($form->unit, ['default_value' => isset($row) ? $row->unit: '']) !!}
 						      </div>
 						      <div class="tab-pane" id="tab_2">
 						      	{!! form_row($form->price_buy, ['default_value' => isset($row['price']) ? (int)$row['price']->price_buy: '']) !!}

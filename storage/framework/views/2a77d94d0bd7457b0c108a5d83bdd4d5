@@ -16,7 +16,7 @@
 					<div class="col-xs-6">
 						<div class="pull-right">
 							<a href="<?php echo url(GLobalHelp::indexUrl()); ?>" data-original-title="Add" data-toggle="tooltip" class="btn btn-default">
-								<i class="fa fa-plus"></i> Kembali
+								<i class="fa fa-arrow-left"></i> Kembali
 							</a>
 						</div>
 					</div>

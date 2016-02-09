@@ -30,11 +30,7 @@
 					{!! GlobalHelp::messages(Session::get('message'), true) !!}
 				@endif
 				{!! Form::open(array('url'=>GLobalHelp::indexUrl().'/store-transaction', 'method' => 'post', 'class'=>'form-horizontal','id'=>'formoid')) !!}
-<<<<<<< HEAD
-				
-=======
 				{{ csrf_field() }}
->>>>>>> 7cfda010d8cd54b250b9a3c6fc242a9e33f9ce74
 				<div class="row">
 					<div class="col-md-6">
 						<div class="box box-solid">

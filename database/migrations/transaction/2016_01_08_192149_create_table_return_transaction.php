@@ -23,7 +23,7 @@ class CreateTableReturnTransaction extends Migration
               /** Main data  */
               $table->integer('qty');
               $table->decimal('cost_return',10,2);
-              $table->text('description');
+              $table->text('reason');
 
               /* Action */
 
@@ -32,11 +32,13 @@ class CreateTableReturnTransaction extends Migration
               $table->foreign('item_id')->references('id')
                 ->on('items')->onDelete('cascade')
                 ->onUpdate('cascade');
+                
+              $table->string('key_transaction');
 
-              $table->integer('transaction_buy_id')->unsigned();
-              $table->foreign('transaction_buy_id')->references('transaction_buy_id')
-                ->on('transaction_buy')->onDelete('cascade')
-                ->onUpdate('cascade');
+              // $table->integer('transaction_buy_id')->unsigned();
+              // $table->foreign('transaction_buy_id')->references('transaction_buy_id')
+              //   ->on('transaction_buy')->onDelete('cascade')
+              //   ->onUpdate('cascade');
                 
               $table->timestamps();
           });

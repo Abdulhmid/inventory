@@ -57,6 +57,7 @@ class Items extends Controller
     public function postStore(ItemsRequest $request, $id = ""){
         $input = $request->except('save_continue');
         $inputItem['name_items']    = $input['name_items'];
+        $inputItem['unit']    = $input['unit'];
         $inputItem['category_id']   = $input['category_id'];
         $inputItem['supplier_id']   = $input['supplier_id'];
 

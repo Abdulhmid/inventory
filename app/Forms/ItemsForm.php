@@ -22,6 +22,7 @@ class ItemsForm extends Form
 				'attr' => ['id' => 'category_id']
 			])
 			->add('name_items','text')
+			->add('unit','text')
 			->add('price_buy', 'number',[
 				'default_value' => 0,
 				'attr' => ['min' => 0],

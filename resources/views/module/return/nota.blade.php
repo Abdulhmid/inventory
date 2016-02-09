@@ -34,7 +34,6 @@
                 <table class="table table-striped" border="0">
                     <thead>
                         <tr align="center">
-                          <th width="">ID Barang</th>
                           <th width="">Barang</th>
                           <th width="">QTY</th>
                           <th width="">Harga</th>
@@ -42,20 +41,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                      {{--*/ $totalSell = 0; /*--}}
+                      {{--*/ $totalBuy = 0; /*--}}
                       @foreach($dataQuery as $key => $value)
                       <tr>
-                        <td height="">{{$value['item']['id']}}</td>
                         <td height="">{{$value['item']['name_items']}}</td>
                         <td height="">{{ GlobalHelp::idrFormat($value->qty)}}</td>
-                        <td height="">{{ GlobalHelp::idrFormat($value->price_sell)}}</td>
-                        <td height="" align="right">{{  GlobalHelp::idrFormat($value->qty*$value->price_sell) }}</td>
+                        <td height="">{{ GlobalHelp::idrFormat($value->price_buy)}}</td>
+                        <td height="" align="right">{{  GlobalHelp::idrFormat($value->qty*$value->price_buy) }}</td>
                       </tr>
-                      {{--*/ $totalSell += $value->qty*$value->price_sell; /*--}}
+                      {{--*/ $totalBuy += $value->qty*$value->price_buy; /*--}}
                       @endforeach
                       <tr>
                         <td>Total</td>
-                        <td colspan="3" align="right">{{ GlobalHelp::idrFormat($totalSell)}}</td>
+                        <td colspan="3" align="right">{{ GlobalHelp::idrFormat($totalBuy)}}</td>
                       </tr>
                     </tbody>
                 </table>
@@ -65,7 +63,7 @@
             <div class="col-xs-12">
                 <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
                     Note :<br/>
-                    Nota Penjualan.
+                    Nota Pembelian.
                 </p>
             </div>
         </div>
