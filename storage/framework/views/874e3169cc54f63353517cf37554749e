@@ -16,7 +16,7 @@
 					</div>
 					<div class="col-xs-6">
 						<div class="pull-right">
-							<a href="<?php echo url(GLobalHelp::indexUrl().'/create'); ?>" data-original-title="Add" data-toggle="tooltip" class="btn btn-primary">
+							<a href="<?php echo url(GLobalHelp::indexUrl().'/history'); ?>" data-original-title="Add" data-toggle="tooltip" class="btn btn-primary">
 								<i class="fa fa-plus"></i> History Pembelian
 							</a>
 						</div>
@@ -200,7 +200,7 @@
 						'<td>#<input type="hidden" name="idItemPart[]" value="'+ui.item.id+'"/></td>'+
 						'<td>'+ui.item.name_items+'</td>'+
 						'<td><input type="number" min="0" name="qty[]" id="qty_'+ui.item.id+'" class="qty" value="0" class="form-control" /></td>'+
-						'<td><input type="number" min="0" name="price-buy[]" id="price-buy_'+ui.item.id+'" class="price" value="0" class="form-control" /></td>'+
+						'<td><input type="number" min="0" name="price-buy[]" id="price-buy_'+ui.item.id+'" class="price" value="0" class="form-control" /> / '+ui.item.unit+'</td>'+
 						// '<td><input type="number" min="0" id="price-sell" value="0" class="form-control" /></td>'+
 						'<td><span class="subtotal_'+ui.item.id+'">0</span></td>'+
 		                '<td class="hidden-350"><a rel="tooltip" class="delete_item" title="Hapus Barang" data-original-title="Delete"><button class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></button></a></td>'+

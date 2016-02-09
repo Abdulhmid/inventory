@@ -15,5 +15,11 @@ class TransactionSell extends Model {
 		return $this->hasOne(Items::class, 'id', 'item_id');
 	}
 
+	public function scopeTakeData(){
+		return self::with('item')->select('*')
+								 // ->groupBy('key_transaction')
+								 ->orderBy('transaction_sell_id','desc')->get();
+	}
+
 }
 ?>

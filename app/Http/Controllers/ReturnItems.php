@@ -17,10 +17,13 @@ class ReturnItems extends Controller
     protected $folder = "module.return";
     protected $form;
 
-    public function __construct(Md\Items $table
-                               )
+    public function __construct(
+        Md\Items $table,
+        Md\TransactionSell $transactionSell
+    )
     {
         $this->model         = $table;
+        $this->transactionSell   = $transactionSell;
     }
 
     public function getIndex()
@@ -43,6 +46,10 @@ class ReturnItems extends Controller
         $data['breadcrumb'] = $this->url;
         return view($this->folder.'.buy', $data);
     }
+
+    public function getReturnFind(Request $request, $term = ""){
+        return $this->transactionSell->with('item')->where('key_transaction', $term)->get()->toArray();
+    } 
 
 
 }
