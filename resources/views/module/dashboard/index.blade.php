@@ -73,7 +73,7 @@
                 <p class="text-center"><i class="fa fa-cog fa-spin"></i> Loading</p>
             </div>
             <div class="clearfix"></div>
-            <div id="chart" style=" height: 600px; width:100%"></div>
+            <div id="chart" style=" height: 500px; width:97%"></div>
       </div>
     </div>
 
@@ -163,14 +163,14 @@
                     }
                 },
                 title: {
-                    text: 'Income Keseluruhan'
+                    text: 'Income Pendapatan Tahun '
                 },
                 subtitle: {
                     text: $('select[name=from] option:selected').text()
                     +" - "
                     +$('select[name=to] option:selected').text()
                     +" "
-                    +$('select[name=year] option:selected').text()
+                    +$('input[name=year]').val()
                 },
                 credits : {
                     enabled : false
