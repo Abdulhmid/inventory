@@ -249,6 +249,18 @@
 	
 	});
 
+    $( document ).on( "click", ".delete_item", function( e ) {
+        var jwb = confirm('Yakin Menghapus Item ini ? ');
+        if(jwb){
+            $(this).parent().fadeOut('slow', function() {
+                $(this).parent().remove();
+            });
+        }else{
+            alert('batal dihapus');
+        }
+    });   
+
+
     function addCommas(nStr)
     {
         nStr += '';

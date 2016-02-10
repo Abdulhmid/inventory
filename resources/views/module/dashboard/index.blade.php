@@ -1,43 +1,14 @@
 @extends('main')
 
+@section('style')
+  <link href="{!! asset('plugins/datepicker/datepicker3.css') !!} "rel="stylesheet" type="text/css"/>    
+@stop
+
 @section('content')
 <!-- Main content -->
 <section class="content">
   <!-- Info boxes -->
-  <div class="row">
-    <div class="col-md-4 col-sm-6 col-xs-12">
-      <div class="info-box">
-        <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
-        <div class="info-box-content">
-          <span class="info-box-text">Total Jenis Barang</span>
-          <span class="info-box-number">90<small>%</small></span>
-        </div><!-- /.info-box-content -->
-      </div><!-- /.info-box -->
-    </div><!-- /.col -->
-    <div class="col-md-4 col-sm-6 col-xs-12">
-      <div class="info-box">
-        <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
-        <div class="info-box-content">
-          <span class="info-box-text">Toal Penjualan</span>
-          <span class="info-box-number">41,410</span>
-        </div><!-- /.info-box-content -->
-      </div><!-- /.info-box -->
-    </div><!-- /.col -->
-
-    <!-- fix for small devices only -->
-    <div class="clearfix visible-sm-block"></div>
-
-    <div class="col-md-4 col-sm-6 col-xs-12">
-      <div class="info-box">
-        <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
-        <div class="info-box-content">
-          <span class="info-box-text">Asset</span>
-          <span class="info-box-number">760</span>
-        </div><!-- /.info-box-content -->
-      </div><!-- /.info-box -->
-    </div><!-- /.col -->
-
-  </div><!-- /.row -->
+  @include('module.dashboard._summary')
 
   <!-- Chart -->
   <div class="row">
@@ -67,18 +38,23 @@
                               </div>
                               <div class="col-md-6">
                                   <div class="col-md-4">
-                                      <select name="from" class="form-control select2">
-                                          <option value="" > - Select Month -</option>
+                                      <select class="form-control">
+                                        @for($i =1;$i<=12;$i++)
+                                          <?php $month = date('F', mktime(0, 0, 0, $i, 10)); ?>
+                                          <option value="{!! $i !!}">{!! $month !!}</option>
+                                        @endfor
                                       </select>
                                   </div>
                                   <div class="col-md-4">
-                                      <select name="to" class="form-control select2">
-                                          <option value="" > - Select Month -</option>
+                                      <select class="form-control">
+                                        @for($i =1;$i<=12;$i++)
+                                          <?php $month = date('F', mktime(0, 0, 0, $i, 10)); ?>
+                                          <option value="{!! $i !!}">{!! $month !!}</option>
+                                        @endfor
                                       </select>
                                   </div>
                                   <div class="col-md-4">
-                                      <select name="year" class="form-control filter-year select2">
-                                      </select>
+                                      <input type="text" class="form-control datepickeryear" value="">
                                   </div>
                               </div>
                               <div class="col-md-2">
@@ -114,9 +90,25 @@
     <script src="{!! asset('plugins/highcharts/highcharts.js') !!} " type="text/javascript"></script>
     <script src="{!! asset('plugins/highcharts/highcharts-more.js') !!} " type="text/javascript"></script>
 
+    <script type="text/javascript" src="{!! asset('plugins/datepicker/bootstrap-datepicker.js') !!}"></script>
+    <script type="text/javascript" src="{!! asset('js/datepicker-format.js') !!}"></script>
+
     <script type="text/javascript">
         $(document).ready(function(){
-          getDataHighChart(from, to, year);
+          $('.datepickermonth').datepicker({
+            minViewMode: 'months',
+            autoclose : true
+          });
+
+          $('.datepickeryear').datepicker({
+            minViewMode: 'years',
+            format: 'yyyy',
+            endDate: '+0d',
+            autoclose : true
+          });
+          format();
+
+          // getDataHighChart(from, to, year);
         });
 
         function getDataHighChart(from, to, year)
