@@ -49,6 +49,8 @@
 
 						      	<?php echo form_row($form->name_items, ['default_value' => isset($row) ? $row->name_items: '']); ?>
 
+						      	<?php echo form_row($form->unit, ['default_value' => isset($row) ? $row->unit: '']); ?>
+
 						      </div>
 						      <div class="tab-pane" id="tab_2">
 						      	<?php echo form_row($form->price_buy, ['default_value' => isset($row['price']) ? (int)$row['price']->price_buy: '']); ?>
@@ -84,6 +86,12 @@
 	<script src="<?php echo asset('plugins/sweet-alert/sweet-alert.js'); ?> " type="text/javascript"></script>    
 	<script src="<?php echo asset('js/alert.js'); ?> " type="text/javascript"></script>
 	<script type="text/javascript">
+		$(document).ready(function(){
+			<?php if(GLobalHelp::actionUrl() == "create"): ?>
+				$("#price_buy").prop('readonly', true);
+				$("#price_selling").prop('readonly', true);
+			<?php endif; ?>
+		});
     </script>
 <?php $__env->stopSection(); ?>
 

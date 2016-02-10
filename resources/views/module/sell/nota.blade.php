@@ -55,7 +55,7 @@
                       @endforeach
                       <tr>
                         <td>Total</td>
-                        <td colspan="3" align="right">{{ GlobalHelp::idrFormat($totalSell)}}</td>
+                        <td colspan="4" align="right">{{ GlobalHelp::idrFormat($totalSell)}}</td>
                       </tr>
                     </tbody>
                 </table>

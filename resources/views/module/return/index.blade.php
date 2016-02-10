@@ -17,8 +17,8 @@
 					</div>
 					<div class="col-xs-6">
 						<div class="pull-right">
-							<a href="{!! url(GLobalHelp::indexUrl().'/create') !!}" data-original-title="Add" data-toggle="tooltip" class="btn btn-primary">
-								<i class="fa fa-plus"></i> Tambah
+							<a href="{!! url(GLobalHelp::indexUrl().'/history') !!}" data-original-title="Add" data-toggle="tooltip" class="btn btn-primary">
+								<i class="fa fa-plus"></i> History
 							</a>
 						</div>
 					</div>
@@ -246,6 +246,18 @@
 	    });
 	
 	});
+
+    $( document ).on( "click", ".delete_item", function( e ) {
+        var jwb = confirm('Yakin Menghapus Item ini ? ');
+        if(jwb){
+            $(this).parent().fadeOut('slow', function() {
+                $(this).parent().remove();
+            });
+        }else{
+            alert('batal dihapus');
+        }
+    });   
+
 
     function addCommas(nStr)
     {

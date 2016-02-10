@@ -77,5 +77,11 @@
 	<script src="{!! asset('plugins/sweet-alert/sweet-alert.js') !!} " type="text/javascript"></script>    
 	<script src="{!! asset('js/alert.js') !!} " type="text/javascript"></script>
 	<script type="text/javascript">
+		$(document).ready(function(){
+			@if(GLobalHelp::actionUrl() == "create")
+				$("#price_buy").prop('readonly', true);
+				$("#price_selling").prop('readonly', true);
+			@endif
+		});
     </script>
 @stop

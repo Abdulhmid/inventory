@@ -21,11 +21,13 @@ class Items extends Controller
     protected $folder = "module.items";
     protected $form;
 
-    public function __construct(Md\Items $table,
-                                Md\ItemDetail $tableDetail,
-                                Md\ItemPrice $tablePrice,
-                                Md\Suppliers $suppliers,
-                                Md\ItemsCategory $tableCategory)
+    public function __construct(
+        Md\Items $table,
+        Md\ItemDetail $tableDetail,
+        Md\ItemPrice $tablePrice,
+        Md\Suppliers $suppliers,
+        Md\ItemsCategory $tableCategory
+    )
     {
         $this->model         = $table;
         $this->modelDetail   = $tableDetail;

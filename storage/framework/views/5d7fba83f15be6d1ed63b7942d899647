@@ -15,8 +15,8 @@
 					</div>
 					<div class="col-xs-6">
 						<div class="pull-right">
-							<a href="<?php echo url(GLobalHelp::indexUrl().'/create'); ?>" data-original-title="Add" data-toggle="tooltip" class="btn btn-primary">
-								<i class="fa fa-plus"></i> Tambah
+							<a href="<?php echo url(GLobalHelp::indexUrl().'/history'); ?>" data-original-title="Add" data-toggle="tooltip" class="btn btn-primary">
+								<i class="fa fa-plus"></i> History
 							</a>
 						</div>
 					</div>

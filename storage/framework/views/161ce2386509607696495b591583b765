@@ -35,6 +35,7 @@
                 <table class="table table-striped" border="0">
                     <thead>
                         <tr align="center">
+                          <th width="">ID Barang</th>
                           <th width="">Barang</th>
                           <th width="">QTY</th>
                           <th width="">Harga</th>
@@ -45,6 +46,7 @@
                       <?php /**/ $totalSell = 0; /**/ ?>
                       <?php foreach($dataQuery as $key => $value): ?>
                       <tr>
+                        <td height=""><?php echo e($value['item']['id']); ?></td>
                         <td height=""><?php echo e($value['item']['name_items']); ?></td>
                         <td height=""><?php echo e(GlobalHelp::idrFormat($value->qty)); ?></td>
                         <td height=""><?php echo e(GlobalHelp::idrFormat($value->price_sell)); ?></td>
@@ -54,7 +56,7 @@
                       <?php endforeach; ?>
                       <tr>
                         <td>Total</td>
-                        <td colspan="3" align="right"><?php echo e(GlobalHelp::idrFormat($totalSell)); ?></td>
+                        <td colspan="4" align="right"><?php echo e(GlobalHelp::idrFormat($totalSell)); ?></td>
                       </tr>
                     </tbody>
                 </table>
