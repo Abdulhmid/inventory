@@ -16,11 +16,11 @@
 						<h3 class="box-title">{!! $title !!}</h3>
 					</div>
 					<div class="col-xs-6">
-						<div class="pull-right">
+						<!-- <div class="pull-right">
 							<a href="{!! url(GLobalHelp::indexUrl().'/history') !!}" data-original-title="Add" data-toggle="tooltip" class="btn btn-primary">
 								<i class="fa fa-plus"></i> History
 							</a>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div><!-- /.box-header -->
