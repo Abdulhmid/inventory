@@ -1,11 +1,11 @@
 <div class="row">
-    <div class="col-lg-4 col-xs-6">
+    <div class="col-lg-4 col-xs-8">
         <div class="small-box bg-green">
             <div class="inner">
                 <h3>
-                    <span id="income"></span>
+                    <span id="items"></span>
                 </h3>
-                <span id="loading-income"><i class="fa fa-spinner fa-2x fa-pulse"></i></span>
+                <span id="loading-items"><i class="fa fa-spinner fa-2x fa-pulse"></i></span>
 
                 <p>Total Barang</p>
             </div>
@@ -14,11 +14,11 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-xs-6">
+    <div class="col-lg-4 col-xs-8">
         <div class="small-box bg-aqua">
             <div class="inner">
-                <h3><span id="car"></span></h3>
-                <span id="loading-car"><i class="fa fa-spinner fa-2x fa-pulse"></i></span>
+                <h3><span id="asset"></span></h3>
+                <span id="loading-asset"><i class="fa fa-spinner fa-2x fa-pulse"></i></span>
 
                 <p>Total Asset</p>
             </div>
@@ -27,11 +27,11 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-xs-6">
+    <div class="col-lg-4 col-xs-8">
         <div class="small-box bg-red">
             <div class="inner">
-                <h3><span id="motor"></span></h3>
-                <span id="loading-motor"><i class="fa fa-spinner fa-2x fa-pulse"></i></span>
+                <h3><span id="income"></span></h3>
+                <span id="loading-income"><i class="fa fa-spinner fa-2x fa-pulse"></i></span>
 
                 <p>Total Pendapatan</p>
             </div>
@@ -48,11 +48,36 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            $.get("{!! url('dashboard/income') !!}", function (data) {
+
+            $.get("{!! url('count-items') !!}", function (data) {
+                        console.log(data);
+                        $('#items').text(data);
+                    })
+                    .always(function () {
+                        $('#loading-items').show()
+                    })
+                    .done(function () {
+                        $('#loading-items').hide();
+                    });
+
+            $.get("{!! url('count-asset') !!}", function (data) {
+                        $('#currency').remove();
+                        $('#asset')
+                                .text(formatNumber(data, false))
+                                .before('<small style="color: #fff" id="currency"><sup>Rp. </sup></small>');
+                    })
+                    .always(function () {
+                        $('#loading-asset').show()
+                    })
+                    .done(function () {
+                        $('#loading-asset').hide();
+                    });
+
+            $.get("{!! url('count-income') !!}", function (data) {
                         $('#currency').remove();
                         $('#income')
                                 .text(formatNumber(data, false))
-                                .before('<small style="color: #fff" id="currency"><sup>Rp</sup></small>');
+                                .before('<small style="color: #fff" id="currency"><sup>Rp. </sup></small>');
                     })
                     .always(function () {
                         $('#loading-income').show()
@@ -61,35 +86,29 @@
                         $('#loading-income').hide();
                     });
 
-            $.get("{!! url('dashboard/count-car') !!}", function (data) {
-                        $('#car').text(formatNumber(data, false));
-                    })
-                    .always(function () {
-                        $('#loading-car').show()
-                    })
-                    .done(function () {
-                        $('#loading-car').hide();
-                    });
+            /* End */
 
-            $.get("{!! url('dashboard/count-motor') !!}", function (data) {
-                        $('#motor').text(formatNumber(data, false));
-                    })
-                    .always(function () {
-                        $('#loading-motor').show()
-                    })
-                    .done(function () {
-                        $('#loading-motor').hide();
-                    });
 
-            $.get("{!! url('dashboard/count-other-vehicle') !!}", function (data) {
-                        $('#other').text(formatNumber(data, false));
-                    })
-                    .always(function () {
-                        $('#loading-other').show()
-                    })
-                    .done(function () {
-                        $('#loading-other').hide();
-                    });
+
+            // $.get("{!! url('dashboard/count-motor') !!}", function (data) {
+            //             $('#motor').text(formatNumber(data, false));
+            //         })
+            //         .always(function () {
+            //             $('#loading-motor').show()
+            //         })
+            //         .done(function () {
+            //             $('#loading-motor').hide();
+            //         });
+
+            // $.get("{!! url('dashboard/count-other-vehicle') !!}", function (data) {
+            //             $('#other').text(formatNumber(data, false));
+            //         })
+            //         .always(function () {
+            //             $('#loading-other').show()
+            //         })
+            //         .done(function () {
+            //             $('#loading-other').hide();
+            //         });
 
 
         });

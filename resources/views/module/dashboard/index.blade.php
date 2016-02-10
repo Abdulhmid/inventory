@@ -92,6 +92,7 @@
 
     <script type="text/javascript" src="{!! asset('plugins/datepicker/bootstrap-datepicker.js') !!}"></script>
     <script type="text/javascript" src="{!! asset('js/datepicker-format.js') !!}"></script>
+    <script src="{!! asset('plugins/accounting/accounting.min.js') !!}" type="text/javascript"></script>
 
     <script type="text/javascript">
         $(document).ready(function(){
@@ -110,6 +111,14 @@
 
           // getDataHighChart(from, to, year);
         });
+
+        function formatNumber(number, currency) {
+            var currency = typeof currency !== 'undefined' ? currency : true;
+            var withCurrency = currency == true ? 'Rp' : '';
+
+
+            return accounting.formatMoney(number, withCurrency, 0, ".", ",");
+        }
 
         function getDataHighChart(from, to, year)
         {
