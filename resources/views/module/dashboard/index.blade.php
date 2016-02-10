@@ -203,6 +203,13 @@
                 legend: {
                     enabled: true
                 },
+                exporting: {
+                        buttons: {
+                            contextButton: {
+                                enabled: true
+                            }    
+                        }
+                    },
                 series: data.data
 
             });
