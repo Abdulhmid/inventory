@@ -8,6 +8,13 @@
 
             <li class="header">Main Menu</li>
 
+            <li class="<?php echo $segment == '' ? 'active' : ''; ?>">
+                <a href="<?php echo url('/'); ?>">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
             <li class="<?php echo $segment == 'selling' ? 'active' : ''; ?>">
                 <a href="<?php echo url('/selling'); ?>">
                     <i class="fa fa-file-text"></i>

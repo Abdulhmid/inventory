@@ -8,6 +8,13 @@
 
             <li class="header">Main Menu</li>
 
+            <li class="{!! $segment == '' ? 'active' : '' !!}">
+                <a href="{!! url('/') !!}">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
             <li class="{!! $segment == 'selling' ? 'active' : '' !!}">
                 <a href="{!! url('/selling') !!}">
                     <i class="fa fa-file-text"></i>

@@ -89,28 +89,6 @@
             /* End */
 
 
-
-            // $.get("{!! url('dashboard/count-motor') !!}", function (data) {
-            //             $('#motor').text(formatNumber(data, false));
-            //         })
-            //         .always(function () {
-            //             $('#loading-motor').show()
-            //         })
-            //         .done(function () {
-            //             $('#loading-motor').hide();
-            //         });
-
-            // $.get("{!! url('dashboard/count-other-vehicle') !!}", function (data) {
-            //             $('#other').text(formatNumber(data, false));
-            //         })
-            //         .always(function () {
-            //             $('#loading-other').show()
-            //         })
-            //         .done(function () {
-            //             $('#loading-other').hide();
-            //         });
-
-
         });
     </script>
 

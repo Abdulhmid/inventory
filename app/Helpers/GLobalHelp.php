@@ -124,4 +124,9 @@ class GLobalHelp {
         return $newarray;
     }
 
+    public static function nameMonth($month, $format = "M")
+    {
+        return DateTime::createFromFormat('!m', $month)->format($format);
+    }
+
 }

@@ -38,7 +38,7 @@
                               </div>
                               <div class="col-md-6">
                                   <div class="col-md-4">
-                                      <select class="form-control">
+                                      <select class="form-control" name="from">
                                         @for($i =1;$i<=12;$i++)
                                           <?php $month = date('F', mktime(0, 0, 0, $i, 10)); ?>
                                           <option value="{!! $i !!}">{!! $month !!}</option>
@@ -46,7 +46,7 @@
                                       </select>
                                   </div>
                                   <div class="col-md-4">
-                                      <select class="form-control">
+                                      <select class="form-control" name="to">
                                         @for($i =1;$i<=12;$i++)
                                           <?php $month = date('F', mktime(0, 0, 0, $i, 10)); ?>
                                           <option value="{!! $i !!}">{!! $month !!}</option>
@@ -54,7 +54,7 @@
                                       </select>
                                   </div>
                                   <div class="col-md-4">
-                                      <input type="text" class="form-control datepickeryear" value="">
+                                      <input type="text" class="form-control datepickeryear" name="year" value="{!! date('Y') !!}">
                                   </div>
                               </div>
                               <div class="col-md-2">
@@ -109,7 +109,20 @@
           });
           format();
 
-          // getDataHighChart(from, to, year);
+          var from = $('select[name=from]').val();
+          var to = $('select[name=to]').val();
+          var year = $('input[name=year]').val();
+
+          getDataHighChart(from, to, year);
+
+          $('#show').on('click', function(){
+            var from = $('select[name=from]').val();
+            var to = $('select[name=to]').val();
+            var year = $('input[name=year]').val();
+
+            getDataHighChart(from, to, year);  
+          });
+
         });
 
         function formatNumber(number, currency) {
@@ -150,7 +163,7 @@
                     }
                 },
                 title: {
-                    text: 'Income All Site'
+                    text: 'Income Keseluruhan'
                 },
                 subtitle: {
                     text: $('select[name=from] option:selected').text()

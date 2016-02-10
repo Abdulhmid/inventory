@@ -63,4 +63,31 @@ class Dashboard extends Controller
         return response()->json($total[0]['total']);
     }
 
+    public function getChart($from, $to, $year)
+    {
+        $result = [];
+        $result['data'] = [];
+        $result['months'] = [];
+
+        $result['data'] = [];
+
+        $arrayTotal = [];
+
+        for ($from; $from <= $to; $from++) {
+            $month = \GLobalHelp::nameMonth($from);
+
+            array_push($result['months'], $month);
+            $total = $this->transactionSell
+                      ->whereMonth('created_at', '=', $from)
+                      ->whereYear('created_at', '=',$year)
+                      ->select(\DB::RAW('sum(qty * price_sell) AS total'))
+                      ->get();
+
+            array_push($arrayTotal, (int)$total[0]['total']);
+        }
+        array_push($result['data'], ['name' => 'Income', 'data' => $arrayTotal]);
+
+        return $result;
+    }
+
 }
