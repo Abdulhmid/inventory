@@ -237,6 +237,7 @@
 	      		$('button[type="submit"]').prop('disabled', true);
 	      		$('.delete_item').prop('disabled', true);
 	      		$('.btn-delete').prop('disabled', true);
+	      		$('.qty').prop('disabled', true);
 	      		$('#item').prop('disabled', true);
 	      		$('#print').prop('disabled', false);
 	      		$("#idList").val(data);
@@ -244,6 +245,12 @@
 	      });
 	      return false;
 	    });
+
+        /* Action Print Nota */
+		$("#print").on('click', function(){
+			var url = "{!! url(GLobalHelp::indexUrl().'/nota') !!}"+"/"+$("#idList").val();    
+			$(location).attr('href',url);
+		});
 	
 	});
 
