@@ -1,11 +1,9 @@
-@extends('main')
+<?php $__env->startSection('style'); ?>
+<link href="<?php echo asset('plugins/datatables/dataTables.bootstrap.css'); ?> "rel="stylesheet" type="text/css"/>    
+<link href="<?php echo asset('plugins/sweet-alert/sweet-alert.css'); ?> "rel="stylesheet" type="text/css"/>
+<?php $__env->stopSection(); ?>
 
-@section('style')
-<link href="{!! asset('plugins/datatables/dataTables.bootstrap.css') !!} "rel="stylesheet" type="text/css"/>    
-<link href="{!! asset('plugins/sweet-alert/sweet-alert.css') !!} "rel="stylesheet" type="text/css"/>
-@stop
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <section class="content">
 <div class="row">
 	<div class="col-xs-12">
@@ -13,23 +11,26 @@
 			<div class="box-header">
 				<div class="row">
 					<div class="col-xs-6">
-						<h3 class="box-title">{!! $title !!}</h3>
+						<h3 class="box-title"><?php echo $title; ?></h3>
 					</div>
 					<div class="col-xs-6">
-						<!-- <div class="pull-right">
-							<a href="{!! url(GLobalHelp::indexUrl().'/history') !!}" data-original-title="Add" data-toggle="tooltip" class="btn btn-primary">
+						<div class="pull-right">
+							<a href="<?php echo url(GLobalHelp::indexUrl().'/history'); ?>" data-original-title="Add" data-toggle="tooltip" class="btn btn-primary">
 								<i class="fa fa-plus"></i> History
 							</a>
-						</div> -->
+						</div>
 					</div>
 				</div>
 			</div><!-- /.box-header -->
 			<div class="box-body">
-				@if(Session::has('error'))
-				{!! GlobalHelp::messages(Session::get('error'), true) !!}
-				@endif
-				{!! Form::open(array('url'=>GLobalHelp::indexUrl().'/store-transaction', 'method' => 'post', 'class'=>'form-horizontal','id'=>'formoid')) !!}
-				{{ csrf_field() }}
+				<?php if(Session::has('error')): ?>
+				<?php echo GlobalHelp::messages(Session::get('error'), true); ?>
+
+				<?php endif; ?>
+				<?php echo Form::open(array('url'=>GLobalHelp::indexUrl().'/store-transaction', 'method' => 'post', 'class'=>'form-horizontal','id'=>'formoid')); ?>
+
+				<?php echo e(csrf_field()); ?>
+
 				<div class="row">
 					<div class="col-md-6">
 						<div class="box box-solid">
@@ -140,24 +141,25 @@
 						</div><!-- /.box -->
 					</div>
 				</div>
-				{!! Form::close() !!}
+				<?php echo Form::close(); ?>
+
 			</div><!-- /.box-body -->
 		</div><!-- /.box -->
 	</div><!-- /.col -->
 </div><!-- /.row -->
 </section>
-@stop
+<?php $__env->stopSection(); ?>
 
-@section('script') 
-<script src="{!! asset('plugins/sweet-alert/sweet-alert.js') !!} " type="text/javascript"></script>    
-<script src="{!! asset('js/alert.js') !!} " type="text/javascript"></script>    
+<?php $__env->startSection('script'); ?> 
+<script src="<?php echo asset('plugins/sweet-alert/sweet-alert.js'); ?> " type="text/javascript"></script>    
+<script src="<?php echo asset('js/alert.js'); ?> " type="text/javascript"></script>    
 
 <script type="text/javascript">
 	$(document).ready(function() {
 
 		$("#findStock").click(function(){
 			var term = $('#itemFind').val();
-			$.get("{{ url(GLobalHelp::indexUrl().'/find-stock') }}/"+term)
+			$.get("<?php echo e(url(GLobalHelp::indexUrl().'/find-stock')); ?>/"+term)
 				.success(function(data){
 					$("#nameItem").text(data.name_items);
 					$("#stockReturn").text(data.detail.stok);
@@ -170,7 +172,7 @@
 		$("#find").click(function(){
 			var term = $('#termKey').val();
 
-			$.get("{{ url(GLobalHelp::indexUrl().'/return-find') }}/"+term)
+			$.get("<?php echo e(url(GLobalHelp::indexUrl().'/return-find')); ?>/"+term)
 				.success(function(data){
 				
 					$.each(data, function(index, value){
@@ -248,7 +250,7 @@
 
         /* Action Print Nota */
 		$("#print").on('click', function(){
-			var url = "{!! url(GLobalHelp::indexUrl().'/nota') !!}"+"/"+$("#idList").val();    
+			var url = "<?php echo url(GLobalHelp::indexUrl().'/nota'); ?>"+"/"+$("#idList").val();    
 			$(location).attr('href',url);
 		});
 	
@@ -279,4 +281,6 @@
         return x1 + x2;
     }
 </script>
-@stop
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
