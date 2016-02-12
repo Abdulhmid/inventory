@@ -34,9 +34,9 @@
         "yajra\\Datatables\\DatatablesServiceProvider",
         "Kris\\LaravelFormBuilder\\FormBuilderServiceProvider",
         "App\\Library\\Breadcrumb\\BreadcrumbServiceProvider",
-        "Barryvdh\\Snappy\\ServiceProvider",
         "Maatwebsite\\Excel\\ExcelServiceProvider",
-        "Anchu\\Ftp\\FtpServiceProvider"
+        "Anchu\\Ftp\\FtpServiceProvider",
+        "Barryvdh\\DomPDF\\ServiceProvider"
     ],
     "eager": [
         "Illuminate\\Auth\\AuthServiceProvider",
@@ -61,9 +61,9 @@
         "yajra\\Datatables\\DatatablesServiceProvider",
         "Kris\\LaravelFormBuilder\\FormBuilderServiceProvider",
         "App\\Library\\Breadcrumb\\BreadcrumbServiceProvider",
-        "Barryvdh\\Snappy\\ServiceProvider",
         "Maatwebsite\\Excel\\ExcelServiceProvider",
-        "Anchu\\Ftp\\FtpServiceProvider"
+        "Anchu\\Ftp\\FtpServiceProvider",
+        "Barryvdh\\DomPDF\\ServiceProvider"
     ],
     "deferred": {
         "command.app.name": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",

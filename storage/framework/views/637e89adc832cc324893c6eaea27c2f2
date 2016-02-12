@@ -76,6 +76,9 @@
     </div>
 
 
+
+
+
     </div><!-- /.col -->
   </div><!-- /.row -->
 
@@ -171,7 +174,7 @@
                     +$('input[name=year]').val()
                 },
                 credits : {
-                    enabled : false
+                    enabled : true
                 },
                 xAxis: {
                     categories: data.months,
@@ -184,7 +187,7 @@
                     }
                 },
                 tooltip: {
-                    enabled : false
+                    enabled : true
                 },
                 plotOptions: {
                     series: {
@@ -196,8 +199,15 @@
                     }
                 },
                 legend: {
-                    enabled: false
+                    enabled: true
                 },
+                exporting: {
+                        buttons: {
+                            contextButton: {
+                                enabled: true
+                            }    
+                        }
+                    },
                 series: data.data
 
             });

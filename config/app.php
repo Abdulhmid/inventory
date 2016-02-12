@@ -151,9 +151,10 @@ return [
         yajra\Datatables\DatatablesServiceProvider::class,
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
         App\Library\Breadcrumb\BreadcrumbServiceProvider::class,
-        Barryvdh\Snappy\ServiceProvider::class,
+        // Barryvdh\Snappy\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Anchu\Ftp\FtpServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -209,9 +210,10 @@ return [
         'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
         'Breadcrumb' => App\Library\Breadcrumb\BreadcrumbFacade::class,
         'Uuid'      => Webpatser\Uuid\Uuid::class,
-        'PDF'       => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        // 'PDF'       => Barryvdh\Snappy\Facades\SnappyPdf::class,
         'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
         'FTP'       => Anchu\Ftp\Facades\Ftp::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

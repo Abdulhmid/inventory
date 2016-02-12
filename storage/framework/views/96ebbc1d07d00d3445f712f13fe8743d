@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
     <title>Laporan Pendapatan</title>
-    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <style type="text/css"></style>
     <!-- Bootstrap 3.3.2 -->
-    <link href="<?php echo asset('plugins/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css" />   
+    <!-- <link href="<?php echo asset('plugins/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css" />    -->
+    <!-- <link href="<?php echo asset('plugins/bootstrap/css/bootstrap.css'); ?>" rel="stylesheet" type="text/css" />    -->
     <!-- Font Awesome Icons -->
-    <link href="<?php echo asset('plugins/icon/font-awesome/css/font-awesome.min.css'); ?>" rel="stylesheet" type="text/css" />
+    <!-- <link href="<?php echo asset('plugins/icon/font-awesome/css/font-awesome.min.css'); ?>" rel="stylesheet" type="text/css" /> -->
     <!-- Ionicons -->
-    <link href="<?php echo asset('plugins/icon/ionicons/ionicons.min.css'); ?>" rel="stylesheet" type="text/css" />     
+    <!-- <link href="<?php echo asset('plugins/icon/ionicons/ionicons.min.css'); ?>" rel="stylesheet" type="text/css" />      -->
     <!-- Theme style -->
     <!-- <link href="<?php echo asset('assets/css/AdminLTE/AdminLTE.min.css'); ?>" rel="stylesheet" type="text/css" /> -->
   </head>
@@ -25,6 +25,8 @@
         </div>
         <div class="row">
           <div class="col-xs-12">
+            Key Transaksi :  <?php echo e($keyTrans); ?>
+
           </div>
         </div>
         <br/>
@@ -52,7 +54,7 @@
                       <?php endforeach; ?>
                       <tr>
                         <td>Total</td>
-                        <td colspan="3" align="right"><?php echo e(GlobalHelp::idrFormat($totalBuy)); ?></td>
+                        <td colspan="4" align="right"><?php echo e(GlobalHelp::idrFormat($totalBuy)); ?></td>
                       </tr>
                     </tbody>
                 </table>

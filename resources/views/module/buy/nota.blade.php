@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
     <title>Laporan Pendapatan</title>
-    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <style type="text/css"></style>
     <!-- Bootstrap 3.3.2 -->
-    <link href="{!! asset('plugins/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet" type="text/css" />   
+    <!-- <link href="{!! asset('plugins/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet" type="text/css" />    -->
+    <!-- <link href="{!! asset('plugins/bootstrap/css/bootstrap.css') !!}" rel="stylesheet" type="text/css" />    -->
     <!-- Font Awesome Icons -->
-    <link href="{!! asset('plugins/icon/font-awesome/css/font-awesome.min.css') !!}" rel="stylesheet" type="text/css" />
+    <!-- <link href="{!! asset('plugins/icon/font-awesome/css/font-awesome.min.css') !!}" rel="stylesheet" type="text/css" /> -->
     <!-- Ionicons -->
-    <link href="{!! asset('plugins/icon/ionicons/ionicons.min.css') !!}" rel="stylesheet" type="text/css" />     
+    <!-- <link href="{!! asset('plugins/icon/ionicons/ionicons.min.css') !!}" rel="stylesheet" type="text/css" />      -->
     <!-- Theme style -->
     <!-- <link href="{!! asset('assets/css/AdminLTE/AdminLTE.min.css') !!}" rel="stylesheet" type="text/css" /> -->
   </head>
