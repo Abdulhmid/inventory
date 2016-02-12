@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
   <head>
     <title>Laporan Pendapatan</title>
     <style type="text/css"></style>
+    <link href="{!! asset('css/style-report.css') !!}" rel="stylesheet" type="text/css" />
     <!-- Bootstrap 3.3.2 -->
     <!-- <link href="{!! asset('plugins/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet" type="text/css" />    -->
     <!-- <link href="{!! asset('plugins/bootstrap/css/bootstrap.css') !!}" rel="stylesheet" type="text/css" />    -->
@@ -18,11 +19,11 @@
         <div class="row">
           <div class="col-xs-12">
             <h2 class="page-header" style="">  
-              <i class="fa fa-globe"></i> Nota Pembayaran 
-              <i class="pull-right"> <label style="font-size:13px;"><?= date('Y-F-d h:i:s') ?></label> </i>
+              <i class="fa fa-globe"></i> Nota Pembayaran <br/> <label style="font-size:13px;"> <?= date('Y-F-d h:i:s') ?> </label>
+              <!-- <i class="pull-right"> <label style="font-size:13px;"><?= date('Y-F-d h:i:s') ?></label> </i> -->
             </h2>
           </div><!-- /.col -->
-        </div>
+        </div><hr/>
         <div class="row">
           <div class="col-xs-12">
             Key Transaksi :  {{$keyTrans}}
@@ -31,7 +32,7 @@
         <br/>
         <div class="row">
             <div class="col-xs-12 table-responsive">
-                <table class="table table-striped" border="0">
+                <table class="table table-striped" width="100%" border="1">
                     <thead>
                         <tr align="center">
                           <th width="">Barang</th>

@@ -102,7 +102,7 @@
 										<div class="pull-left">
 											<div class="input-group input-group-sm" style="margin-left: -20px;width: 67%;">
 												<span class="input-group-btn">
-													<button class="btn btn-info btn-flat" style="margin-left: 2px;" type="submit">Tambah Pembelian</button>
+													<button class="btn btn-info btn-flat" style="margin-left: 2px;" type="submit">Proses Pengembalian</button>
 												</span>
 												<span class="input-group-btn">
 													<button class="btn btn-info btn-flat" style="margin-left: -95px;" id="print" type="button">Cetak</button>
