@@ -1,0 +1,101 @@
+<?php $__env->startSection('style'); ?>
+<link href="<?php echo asset('plugins/datatables/dataTables.bootstrap.css'); ?> "rel="stylesheet" type="text/css"/>    
+<link href="<?php echo asset('plugins/sweet-alert/sweet-alert.css'); ?> "rel="stylesheet" type="text/css"/>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<section class="content">
+<div class="row">
+	<div class="col-xs-12">
+		<div class="box">
+			<div class="box-header">
+				<div class="row">
+					<div class="col-xs-6">
+						<h3 class="box-title">Daftar <?php echo $title; ?></h3>
+					</div>
+					<div class="col-xs-6">
+						<div class="pull-right">
+							<a href="<?php echo url(GLobalHelp::indexUrl().'/create'); ?>" data-original-title="Add" data-toggle="tooltip" class="btn btn-primary">
+								<i class="fa fa-plus"></i> Tambah
+							</a>
+						</div>
+					</div>
+				</div>
+			</div><!-- /.box-header -->
+			<div class="box-body">
+                <?php if(Session::has('erroracl')): ?>
+                <?php echo GlobalHelp::messages(Session::get('erroracl'), true); ?>
+
+                <?php endif; ?>
+
+				<?php if(Session::has('error')): ?>
+				<?php echo GlobalHelp::messages(Session::get('error'), true); ?>
+
+				<?php endif; ?>
+				<table id="datatable" class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th width="11%">Nama Group</th>
+							<!-- <th width="2%">Order</th> -->
+							<th width="7%">Pembaruan Terakhir</th>
+							<th width="5%">Aksi</th>
+						</tr>
+					</thead>
+				</table>
+			</div><!-- /.box-body -->
+		</div><!-- /.box -->
+	</div><!-- /.col -->
+</div><!-- /.row -->
+</section>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('script'); ?>
+<script src="<?php echo asset('plugins/datatables/jquery.dataTables.js'); ?>" type="text/javascript"></script>    
+<script src="<?php echo asset('plugins/datatables/dataTables.bootstrap.js'); ?> " type="text/javascript"></script>    
+<script src="<?php echo asset('plugins/sweet-alert/sweet-alert.js'); ?> " type="text/javascript"></script>    
+<script src="<?php echo asset('js/alert.js'); ?> " type="text/javascript"></script>    
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		var filter = '';
+		datatable(filter);
+	});
+
+	function datatable(filter){
+
+		return oTable = $('#datatable').DataTable({
+			"dom": '<"tableHeader"<"row"<"col-md-6"f><"col-md-6"p>>><"newProcessing"r>t<"tableFooter"<"row"<"col-md-4"l><"col-md-4"i><"col-md-4"p>>>',
+			"order": [[ 1, "asc" ]],
+			"bPaginate": true,
+			"bLengthChange": true,
+			"bFilter": true,
+			"bSort": true,
+			"bInfo": true,
+			"bAutoWidth": true,
+			"processing": true,
+			"bDestroy": true,
+			"serverSide": true,
+	        "ajax": {
+	            "url": "<?php echo url(GLobalHelp::indexUrl().'/data'); ?>",
+			    error: function (xhr, error, thrown) {
+			    	sweetAlert("Oops...", "Something went wrong!", "error");
+			    },
+	            data: function (d) {
+	            }
+	        },
+			"columns": [
+				{data: 'group_name', name: 'group_name'},
+				// {data: 'order', name: 'order'},
+				{data: 'created_at', name: 'created_at', searchable : false},
+				{data: 'action', name: 'action', searchable : false}
+			], 
+			fnDrawCallback: function(){
+				$('[data-toggle="tooltip"]').tooltip();
+			}
+		});
+	}
+
+</script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
