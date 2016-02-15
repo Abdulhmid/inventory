@@ -90,7 +90,7 @@
 				{data: 'email', name: 'email'},
 				{data: 'name', name: 'name'},
 				{data: 'active', name: 'active'},
-				{data: 'created_at', name: 'created_at'},
+				{data: 'created_at', name: 'created_at', searchable : false},
 				{data: 'action', name: 'action', searchable : false}
 			], 
 			fnDrawCallback: function(){

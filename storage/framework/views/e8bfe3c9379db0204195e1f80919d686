@@ -27,18 +27,17 @@
                 <?php echo GlobalHelp::messages(Session::get('erroracl'), true); ?>
 
                 <?php endif; ?>
-
-				<?php if(Session::has('error')): ?>
-				<?php echo GlobalHelp::messages(Session::get('error'), true); ?>
-
-				<?php endif; ?>
 				<table id="datatable" class="table table-bordered table-hover">
 					<thead>
 						<tr>
-							<th width="11%">Nama Group</th>
-							<!-- <th width="2%">Order</th> -->
-							<th width="7%">Pembaruan Terakhir</th>
-							<th width="5%">Aksi</th>
+							<th width="11%">Photo</th>
+							<th>Username</th>
+							<th>Group</th>
+							<th>Email</th>
+							<th>Nama</th>
+							<th>Status</th>
+							<th>Pembaruan Terakhir</th>
+							<th>Aksi</th>
 						</tr>
 					</thead>
 				</table>
@@ -84,8 +83,12 @@
 	            }
 	        },
 			"columns": [
+				{data: 'photo', name: 'photo'},
+				{data: 'username', name: 'username'},
 				{data: 'group_name', name: 'group_name'},
-				// {data: 'order', name: 'order'},
+				{data: 'email', name: 'email'},
+				{data: 'name', name: 'name'},
+				{data: 'active', name: 'active'},
 				{data: 'created_at', name: 'created_at', searchable : false},
 				{data: 'action', name: 'action', searchable : false}
 			], 
